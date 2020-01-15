@@ -100,7 +100,7 @@
 }
 .book_now{
     display: inline-block;
-    font-size: 15px;
+    font-size: 14px;
     color: #009DFF;
     border: 1px solid #009DFF;
     text-transform: capitalize;
@@ -113,7 +113,7 @@
 
 .boxed_btn_green {
 	cursor: pointer;
-	font-size: 20px;
+	font-size: 16px;
 	color: #fff;
 	padding: 4px 20px;
     background: #00D363;
@@ -131,10 +131,10 @@
 
 .boxed_btn_green2 {
 	cursor: pointer;
-	font-size: 54px;
+	font-size: 16px;
 	color: #fff;
 	padding: 4px 20px;
-    @include border-radius(20px);
+    @include border-radius(30px);
     border: 1px solid transparent;
     @include transition(.3s);
     background: transparent ;

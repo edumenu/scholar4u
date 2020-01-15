@@ -10,11 +10,12 @@
               <div class="col-xl-9">
                   <div class="slider_text text-center">
                       <h3>Over 24000 scholarships at your finger tips</h3>
-                      <p>Start your search now!</p>
                       <div>
-                        <a class="searchButton">
-                          Search
+                        @guest
+                        <a class="searchButton" href="{{ route('register') }}">
+                          Register now!
                         </a>
+                        @endguest
                       </div>
                   </div>
               </div>

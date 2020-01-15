@@ -48,34 +48,34 @@
                                   <ul id="navigation">
                                       <li><a class="active" href="{{ url('/') }}">home</a></li>
 
-                                      <li><a href="package.html">Package</a></li>
+                                      <!-- <li><a href="package.html">Package</a></li> -->
 
-                                      <li><a href="#">blog <i class="ti-angle-down"></i></a>
+                                      <!-- <li><a href="#">blog <i class="ti-angle-down"></i></a>
                                           <ul class="submenu">
                                               <li><a href="blog.html">blog</a></li>
                                               <li><a href="single-blog.html">single-blog</a></li>
                                           </ul>
-                                      </li>
+                                      </li> -->
 
                                       <li><a href="{{ url('/about') }}">About</a></li>
 
                                       <li><a href="{{ url('/contact') }}">Contact</a></li>
                                    @guest
-                                      <li class="loginRegisterDisplay"> <a href="{{ route('login') }}" class="login">
-                                            <i class="flaticon-user"></i>
+                                      <li> <a href="{{ route('login') }}" class="login">
+                                            <!-- <i class="flaticon-user" style="font-size: 1em"></i> -->
                                             <span>{{ __('Login') }}</span>
                                         </a></li>
                                       @if (Route::has('register'))
-                                      <li class="loginRegisterDisplay"><a class="" href="{{ route('register') }}">
+                                      <li><a class="" href="{{ route('register') }}" style="color: #00d363 !important;">
                                           <span>{{ __('Register') }}</span>
                                       </a></li>
                                       @endif
 
                                   @else
 
-                                  <li><a href="#">{{ Auth::user()->name }}<i class="ti-angle-down"></i></a>
+                                  <li><a href="#">{{ Auth::user()->name }} <i class="ti-angle-down"></i></a>
                                       <ul class="submenu">
-                                          <li><a href="/profile/{{ Auth::user()->id }}">Profile</a></li>
+                                          <li><a href="/profile">Profile</a></li>
                                           <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
                                       </ul>
 

@@ -4,7 +4,7 @@
 
 
 <div class="wrapper wrapper-full-page">
-    <div class="full-page login-page" data-color="purple" data-image="full-screen-image-1.jpg">
+    <div class="full-page login-page" data-color="purple" data-image="images/admin_images/full-screen-image-1.jpg">
 
     <!--   you can change the color of the filter page using: data-color="blue | azure | green | orange | red | purple" -->
         <div class="content">
@@ -42,7 +42,7 @@
                                         @enderror
                                    </div>
 
-                                   <div class="form-group row">
+                                   <!-- <div class="form-group row">
                                       <div class="col-md-6 offset-md-4">
                                           <div class="form-check">
                                               <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -52,7 +52,7 @@
                                               </label>
                                           </div>
                                       </div>
-                                  </div>
+                                  </div> -->
 
                                 </div>
 

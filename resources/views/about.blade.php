@@ -65,7 +65,7 @@
                     <div class="col-xl-6">
                         <div class="service_wrap">
                             <div class="thumb-1">
-                                <img src="http://127.0.0.1:8000/static/images/about/1.png" alt="">
+                                <img src="/images/website_images/about/1.png" alt="">
                             </div>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                     <div class="col-xl-6">
                         <div class="service_wrap">
                             <div class="thumb-1">
-                                <img src="http://127.0.0.1:8000/static/images/about/2.png" alt="">
+                                <img src="/images/website_images/about/2.png" alt="">
                             </div>
                         </div>
                     </div>
