@@ -37,12 +37,12 @@
           <div id="sticky-header" class="main-header-area">
               <div class="container-fluid p-0">
                   <div class="row align-items-center no-gutters">
-                      <div class="col-xl-2 col-lg-2">
+                      <div class="col-lg-2">
                           <div class="logo-img">
-                              <a class="navbar-brand" href="#">Navbar</a>
+                              <a class="navbar-brand" href="#">Scholar4U</a>
                           </div>
                       </div>
-                      <div class="col-xl-7 col-lg-7">
+                      <div class="col-lg-10">
                           <div class="main-menu  d-none d-lg-block">
                               <nav>
                                   <ul id="navigation">
@@ -75,7 +75,7 @@
 
                                   <li><a href="#">{{ Auth::user()->name }} <i class="ti-angle-down"></i></a>
                                       <ul class="submenu">
-                                          <li><a href="/profile">Profile</a></li>
+                                          <li><a href="/adminFrontPage">Profile Page</a></li>
                                           <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
                                       </ul>
 

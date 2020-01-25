@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="wrapper wrapper-full-page">
-    <div class="full-page register-page" data-color="purple" data-image="full-screen-image-1.jpg">
+    <div class="full-page register-page" data-color="purple" data-image="/images/admin_images/full-screen-image-3.jpg">
 
     <!--   you can change the color of the filter page using: data-color="blue | azure | green | orange | red | purple" -->
         <div class="content">
@@ -24,7 +24,7 @@
                             </div>
                             <div class="media-body">
                                 <h4>Free Account</h4>
-                                Here you can write a feature description for your dashboard, let the users know what is the value that you give them.
+                                Create a free account and have over 24000 scholarships at your disposal.
                             </div>
                         </div>
 
@@ -35,8 +35,8 @@
                                 </div>
                             </div>
                             <div class="media-body">
-                                <h4>Awesome Performances</h4>
-                                Here you can write a feature description for your dashboard, let the users know what is the value that you give them.
+                                <h4>Student Loan</h4>
+                                Get out of school with little or no debt.
 
                             </div>
                         </div>
@@ -78,12 +78,12 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <input id="password-confirm" placeholder="Password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                        <input id="password-confirm" placeholder="Re-enter Password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                     </div>
                                 </div>
 
                                 <div class="form-group footer text-center">
-                                        <button type="submit" class="btn btn-fill btn-neutral btn-wd">
+                                        <button type="submit" class="btn btn-fill limeGreen btn-wd">
                                             {{ __('Register') }}
                                         </button>
                                 </div>

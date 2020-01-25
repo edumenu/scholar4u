@@ -25,7 +25,7 @@
 
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                                <strong style="color: red;">{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
@@ -37,7 +37,7 @@
 
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                                <strong style="color: red;">{{ $message }}</strong>
                                             </span>
                                         @enderror
                                    </div>
@@ -58,7 +58,7 @@
 
 
                                 <div class="form-group row text-center">
-                                        <button type="submit" class="btn btn-fill btn-success btn-wd">
+                                        <button type="submit" class="btn btn-fill limeGreen btn-wd">
                                             {{ __('Login') }}
                                         </button><br>
 

@@ -80,3 +80,22 @@ var mapData = {
    };
 
    Chartist.Line('#chartSales', dataSales, optionsSales);
+
+   /**********   Calendar  ***************/
+   $(function() {
+
+  // page is now ready, initialize the calendar...
+
+  $('#fullCalendar').fullCalendar({
+
+    header: {
+     left: 'title',
+     center: 'month,agendaWeek,agendaDay',
+     right: 'prevYear,prev,next,nextYear'
+   },
+
+
+
+ });
+
+});

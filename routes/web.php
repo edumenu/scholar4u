@@ -18,6 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/adminFrontPage', 'AdminController@index')->name('adminFrontPage.show');
+Route::get('/scholarshipTable', 'AdminController@scholarshipTable')->name('scholarshipTable.show');
+
+Route::get('/calendar', 'CalendarController@index')->name('calendar.show');
+
 Route::get('/profile', 'ProfileController@index')->name('profile.show');
 
 Route::get('/about', function(){

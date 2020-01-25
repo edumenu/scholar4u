@@ -19,7 +19,15 @@ class AddedColumnsToProfileTable extends Migration
           $table->string('Current School')->nullable();
           $table->string('GPA')->nullable();
           $table->string('Major')->nullable();
-          $table->tinyInteger('phone number')->nullable();
+          $table->tinyInteger('Phone number')->nullable();
+          $table->string('Birthday')->nullable();
+          $table->string('Citizenship')->nullable();
+          $table->string('Gender')->nullable();
+          $table->string('Disabilities')->nullable();
+          $table->string('Ethnicity')->nullable();
+          $table->string('Military')->nullable();
+          $table->string('Sports')->nullable();
+          $table->string('Fraternity')->nullable();
 
           $table->index('user_id');
         });
