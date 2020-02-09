@@ -206,7 +206,7 @@
         > li > a:not(.btn):focus {
             background-color: transparent;
             border-radius: 3px;
-            color: $info-color;
+            color: $success-color;
             @include opacity(1);
         }
 
@@ -358,4 +358,10 @@
     &.navbar-default .navbar-toggle:focus {
         background-color: transparent;
     }
+}
+
+.navBarCustom{
+  background: #42005d;
+  font-size: 1.3em;
+  font-weight: bold !important;
 }

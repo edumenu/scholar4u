@@ -3544,10 +3544,10 @@ be a descendant of the grid when it is being dragged.
 }
 
 .ct-series-d .ct-point, .ct-series-d .ct-line, .ct-series-d .ct-bar, .ct-series-d .ct-slice-donut {
-  stroke: #380053;
+  stroke: #52007a;
 }
 .ct-series-d .ct-slice-pie, .ct-series-d .ct-area {
-  fill: #380053;
+  fill: #52007a;
 }
 
 .ct-series-e .ct-point, .ct-series-e .ct-line, .ct-series-e .ct-bar, .ct-series-e .ct-slice-donut {
@@ -5266,8 +5266,8 @@ h1 .subtitle {
 }
 .sidebar .user .photo,
 .bootstrap-navbar .user .photo {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   overflow: hidden;
   border-radius: 50%;
   float: left;
@@ -5392,13 +5392,13 @@ h1 .subtitle {
 }
 .sidebar[data-color=purple]:after,
 .bootstrap-navbar[data-color=purple]:after {
-  background: #380053;
-  background: -moz-linear-gradient(top, #380053 0%, rgba(148, 59, 234, 0.7) 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #380053), color-stop(100%, rgba(148, 59, 234, 0.7)));
-  background: -webkit-linear-gradient(top, #380053 0%, rgba(148, 59, 234, 0.7) 100%);
-  background: -o-linear-gradient(top, #380053 0%, rgba(148, 59, 234, 0.7) 100%);
-  background: -ms-linear-gradient(top, #380053 0%, rgba(148, 59, 234, 0.7) 100%);
-  background: linear-gradient(to bottom, #380053 0%, rgba(148, 59, 234, 0.7) 100%);
+  background: #52007a;
+  background: -moz-linear-gradient(top, #52007a 0%, rgba(148, 59, 234, 0.7) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #52007a), color-stop(100%, rgba(148, 59, 234, 0.7)));
+  background: -webkit-linear-gradient(top, #52007a 0%, rgba(148, 59, 234, 0.7) 100%);
+  background: -o-linear-gradient(top, #52007a 0%, rgba(148, 59, 234, 0.7) 100%);
+  background: -ms-linear-gradient(top, #52007a 0%, rgba(148, 59, 234, 0.7) 100%);
+  background: linear-gradient(to bottom, #52007a 0%, rgba(148, 59, 234, 0.7) 100%);
   background-size: 150% 150%;
 }
 
@@ -5726,6 +5726,36 @@ h1 .subtitle {
 }
 .btn-danger .caret {
   border-top-color: #FB404B;
+}
+
+.btn-purple {
+  border-color: rgba(82, 0, 122, 0.9);
+  color: rgba(82, 0, 122, 0.9);
+}
+.btn-purple:hover, .btn-purple:focus, .btn-purple:active, .btn-purple.active, .btn-purple:active:focus, .btn-purple:active:hover, .btn-purple.active:focus, .btn-purple.active:hover, .open > .btn-purple.dropdown-toggle {
+  background-color: transparent;
+  color: #52007a;
+  border-color: #52007a;
+}
+.btn-purple.disabled, .btn-purple.disabled:hover, .btn-purple.disabled:focus, .btn-purple.disabled.focus, .btn-purple.disabled:active, .btn-purple.disabled.active, .btn-purple:disabled, .btn-purple:disabled:hover, .btn-purple:disabled:focus, .btn-purple:disabled.focus, .btn-purple:disabled:active, .btn-purple:disabled.active, .btn-purple[disabled], .btn-purple[disabled]:hover, .btn-purple[disabled]:focus, .btn-purple[disabled].focus, .btn-purple[disabled]:active, .btn-purple[disabled].active, fieldset[disabled] .btn-purple, fieldset[disabled] .btn-purple:hover, fieldset[disabled] .btn-purple:focus, fieldset[disabled] .btn-purple.focus, fieldset[disabled] .btn-purple:active, fieldset[disabled] .btn-purple.active {
+  background-color: transparent;
+  border-color: rgba(82, 0, 122, 0.9);
+}
+.btn-purple.btn-fill {
+  color: #FFFFFF;
+  background-color: rgba(82, 0, 122, 0.9);
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.btn-purple.btn-fill:hover, .btn-purple.btn-fill:focus, .btn-purple.btn-fill:active, .btn-purple.btn-fill.active, .open > .btn-purple.btn-fill.dropdown-toggle {
+  background-color: #52007a;
+  color: #FFFFFF;
+}
+.btn-purple.btn-fill .caret {
+  border-top-color: #FFFFFF;
+}
+.btn-purple .caret {
+  border-top-color: rgba(82, 0, 122, 0.9);
 }
 
 .btn-neutral {
@@ -6473,13 +6503,13 @@ star {
 }
 .alert {
   border: 0;
-  border-radius: 0;
+  border-radius: 4px;
   color: #FFFFFF;
-  padding: 10px 15px;
-  font-size: 14px;
+  padding: 1px 5px;
+  font-size: 16px;
 }
 .container .alert {
-  border-radius: 4px;
+  border-radius: 6px;
 }
 .navbar .alert {
   border-radius: 0;
@@ -6527,7 +6557,7 @@ star {
   max-width: 89%;
 }
 .alert[data-notify=container] {
-  padding: 10px 10px 10px 20px;
+  padding: 0;
   border-radius: 4px;
 }
 .alert.alert-with-icon {
@@ -6539,7 +6569,7 @@ star {
 }
 
 .alert-success {
-  background-color: #a1e82c;
+  background-color: #00d363;
 }
 
 .alert-warning {
@@ -6571,8 +6601,7 @@ star {
 }
 .table > thead > tr > th {
   border-bottom-width: 1px;
-  font-size: 0.75rem;
-  text-transform: uppercase;
+  font-size: 1.2em;
   color: #9A9A9A;
   font-weight: 400;
   padding-bottom: 5px;
@@ -6639,6 +6668,10 @@ star {
 }
 .table-bigboy .img-container img {
   width: 100%;
+}
+
+.tableIcon {
+  font-size: 1.3em;
 }
 
 .table > thead > tr > td.success,
@@ -7065,7 +7098,7 @@ star {
 }
 
 .checkbox input[type=checkbox]:checked + label::after {
-  color: #23CCEF;
+  color: #52007a;
 }
 
 .checkbox input[type=checkbox]:checked + label::before {
@@ -7167,7 +7200,7 @@ star {
 }
 
 .radio input[type=radio]:checked + label::after {
-  color: #23CCEF;
+  color: #52007a;
 }
 
 .radio input[type=radio]:disabled + label {
@@ -7256,7 +7289,7 @@ star {
   z-index: 1;
   float: left;
   width: 50% !important;
-  background-color: #23CCEF;
+  background-color: #52007a;
 }
 
 .bootstrap-switch .bootstrap-switch-handle-off {
@@ -7303,7 +7336,7 @@ star {
 }
 
 .bootstrap-switch.bootstrap-switch-on .bootstrap-switch-handle-off {
-  background-color: #23CCEF;
+  background-color: #52007a;
 }
 
 .bootstrap-switch.bootstrap-switch-animate .bootstrap-switch-container {
@@ -7521,7 +7554,7 @@ star {
 .navbar-default .navbar-nav > li > a:not(.btn):focus {
   background-color: transparent;
   border-radius: 3px;
-  color: #23CCEF;
+  color: #00d363;
   opacity: 1;
   filter: alpha(opacity=100);
 }
@@ -7625,7 +7658,7 @@ star {
 }
 
 .navbar-ct-green {
-  background-color: #a1e82c;
+  background-color: #07ff7b;
 }
 
 .navbar-ct-orange {
@@ -7655,6 +7688,12 @@ star {
 }
 .navbar-toggle.navbar-default .navbar-toggle:hover, .navbar-toggle.navbar-default .navbar-toggle:focus {
   background-color: transparent;
+}
+
+.navBarCustom {
+  background: #42005d;
+  font-size: 1.3em;
+  font-weight: bold !important;
 }
 
 .footer {
@@ -8245,6 +8284,9 @@ star {
 }
 .dropdown-menu.dropdown-red > li > a:hover, .dropdown-menu.dropdown-red > li > a:focus, .dropdown-menu.dropdown-red > li.selected > a {
   background-color: rgba(251, 64, 75, 0.2);
+}
+.dropdown-menu.dropdown-purple > li > a:hover, .dropdown-menu.dropdown-purple > li > a:focus, .dropdown-menu.dropdown-purple > li.selected > a {
+  background-color: rgba(82, 0, 122, 0.9);
 }
 .dropdown-menu > li.disabled > a {
   background-color: transparent !important;
@@ -8938,6 +8980,13 @@ star {
   padding: 1px;
 }
 
+.imageSize {
+  width: 20%;
+  margin-left: 8px;
+  border-radius: 30%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 .wrapper {
   position: relative;
   top: 0;
@@ -9052,13 +9101,13 @@ star {
   background-size: 150% 150%;
 }
 .full-page[data-color=purple]:after {
-  background: #380053;
-  background: -moz-linear-gradient(top, #380053 0%, rgba(148, 59, 234, 0.6) 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #380053), color-stop(100%, rgba(148, 59, 234, 0.6)));
-  background: -webkit-linear-gradient(top, #380053 0%, rgba(148, 59, 234, 0.6) 100%);
-  background: -o-linear-gradient(top, #380053 0%, rgba(148, 59, 234, 0.6) 100%);
-  background: -ms-linear-gradient(top, #380053 0%, rgba(148, 59, 234, 0.6) 100%);
-  background: linear-gradient(to bottom, #380053 0%, rgba(148, 59, 234, 0.6) 100%);
+  background: #52007a;
+  background: -moz-linear-gradient(top, #52007a 0%, rgba(148, 59, 234, 0.6) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #52007a), color-stop(100%, rgba(148, 59, 234, 0.6)));
+  background: -webkit-linear-gradient(top, #52007a 0%, rgba(148, 59, 234, 0.6) 100%);
+  background: -o-linear-gradient(top, #52007a 0%, rgba(148, 59, 234, 0.6) 100%);
+  background: -ms-linear-gradient(top, #52007a 0%, rgba(148, 59, 234, 0.6) 100%);
+  background: linear-gradient(to bottom, #52007a 0%, rgba(148, 59, 234, 0.6) 100%);
   background-size: 150% 150%;
 }
 .full-page .footer nav > ul a:not(.btn),
@@ -10242,7 +10291,7 @@ star {
 }
 .nav-text > li.active a,
 .nav-icons > li.active a {
-  color: #23CCEF;
+  color: #00d363;
 }
 
 .nav-icons > li {

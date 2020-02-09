@@ -3,6 +3,169 @@
 @section('content')
 <div class="main-content">
   <div class="container-fluid">
+
+<div class="row">
+   <div class="col-md-12">
+       <div class="card">
+           <div class="content">
+            <h1 class="text-center">Matches</h1>
+             <div class="toolbar">
+                 <!--        Here you can write extra buttons/actions for the toolbar              -->
+             </div>
+                <div class="fresh-datatables">
+                 <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                   <thead>
+                     <tr>
+                       <th>Name</th>
+                       <th>Position</th>
+                       <th>Office</th>
+                       <th>Age</th>
+                       <th>Start date</th>
+                       <th class="disabled-sorting text-right">Actions</th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                     <tr>
+                       <td>Tiger Nixon</td>
+                       <td>System Architect</td>
+                       <td>Edinburgh</td>
+                       <td>61</td>
+                       <td>2011/04/25</td>
+                       <td class="text-right">
+                         <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="fa fa-heart"></i></a>
+                         <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                         <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="fa fa-times"></i></a>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td>Garrett Winters</td>
+                       <td>Accountant</td>
+                       <td>Tokyo</td>
+                       <td>63</td>
+                       <td>2011/07/25</td>
+                       <td class="text-right">
+                         <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="fa fa-heart"></i></a>
+                         <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                         <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="fa fa-times"></i></a>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td>Ashton Cox</td>
+                       <td>Junior Technical Author</td>
+                       <td>San Francisco</td>
+                       <td>66</td>
+                       <td>2009/01/12</td>
+                       <td class="text-right">
+                         <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="fa fa-heart"></i></a>
+                         <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                         <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="fa fa-times"></i></a>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td>Cedric Kelly</td>
+                       <td>Senior Javascript Developer</td>
+                       <td>Edinburgh</td>
+                       <td>22</td>
+                       <td>2012/03/29</td>
+                       <td class="text-right">
+                         <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="fa fa-heart"></i></a>
+                         <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                         <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="fa fa-times"></i></a>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td>Jena Gaines</td>
+                       <td>Office Manager</td>
+                       <td>London</td>
+                       <td>30</td>
+                       <td>2008/12/19</td>
+                       <td class="text-right">
+                         <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="fa fa-heart"></i></a>
+                         <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                         <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="fa fa-times"></i></a>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td>Quinn Flynn</td>
+                       <td>Support Lead</td>
+                       <td>Edinburgh</td>
+                       <td>22</td>
+                       <td>2013/03/03</td>
+                       <td class="text-right">
+                         <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="fa fa-heart"></i></a>
+                         <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                         <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="fa fa-times"></i></a>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td>Charde Marshall</td>
+                       <td>Regional Director</td>
+                       <td>San Francisco</td>
+                       <td>36</td>
+                       <td>2008/10/16</td>
+                       <td class="text-right">
+                         <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="fa fa-heart"></i></a>
+                         <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                         <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="fa fa-times"></i></a>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td>Brenden Wagner</td>
+                       <td>Software Engineer</td>
+                       <td>San Francisco</td>
+                       <td>28</td>
+                       <td>2011/06/07</td>
+                       <td class="text-right">
+                         <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="fa fa-heart"></i></a>
+                         <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                         <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="fa fa-times"></i></a>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td>Gavin Cortez</td>
+                       <td>Team Leader</td>
+                       <td>San Francisco</td>
+                       <td>22</td>
+                       <td>2008/10/26</td>
+                       <td class="text-right">
+                         <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="fa fa-heart"></i></a>
+                         <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                         <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="fa fa-times"></i></a>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td>Vivian Harrell</td>
+                       <td>Financial Controller</td>
+                       <td>San Francisco</td>
+                       <td>62</td>
+                       <td>2009/02/14</td>
+                       <td class="text-right">
+                         <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="fa fa-heart"></i></a>
+                         <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                         <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="fa fa-times"></i></a>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td>Timothy Mooney</td>
+                       <td>Office Manager</td>
+                       <td>London</td>
+                       <td>37</td>
+                       <td>2008/12/11</td>
+                       <td class="text-right">
+                         <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="fa fa-heart"></i></a>
+                         <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                         <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="fa fa-times"></i></a>
+                       </td>
+                     </tr>
+                   </tbody>
+                 </table>
+               </div>
+         </div><!-- end content-->
+       </div><!--  end card  -->
+    </div> <!-- end col-md-12 -->
+  </div> <!-- end row -->
+
+
     <div class="row">
       <div class="col-md-12">
         <div class="card ">
@@ -115,82 +278,7 @@
     </div>
 </div>
 
-
-
 <div class="row">
-    <div class="col-md-4">
-        <div class="card">
-            <div class="header">
-                <h4 class="title">Email Statistics</h4>
-                <p class="category">Last Campaign Performance</p>
-            </div>
-            <div class="content">
-                <!-- <div id="edemChart" class="ct-chart "></div> -->
-                <h4> <br><small>24 Hours Performance</small></h4>
-                <div id="chartPerformance" class="ct-chart "></div>
-            </div>
-            <div class="footer">
-                <div class="legend">
-                    <i class="fa fa-circle text-info"></i> Open
-                    <i class="fa fa-circle text-danger"></i> Bounce
-                    <i class="fa fa-circle text-warning"></i> Unsubscribe
-                </div>
-                <hr>
-                <div class="stats">
-                    <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-8">
-        <div class="card">
-            <div class="header">
-                <h4 class="title">Users Behavior</h4>
-                <p class="category">24 Hours performance</p>
-            </div>
-            <div class="content">
-                <div id="chartSales" class="ct-chart "></div>
-            </div>
-            <div class="footer">
-                <div class="legend">
-                  <i class="fa fa-circle text-info"></i> Visited Site<br>
-                  <i class="fa fa-circle text-danger"></i> Register<br>
-                  <i class="fa fa-circle text-warning"></i> Login 2nd time
-                </div>
-                <hr>
-                <div class="stats">
-                    <i class="fa fa-history"></i> Updated 3 minutes ago
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<div class="row">
-    <div class="col-md-6">
-        <div class="card ">
-            <div class="header">
-                <h4 class="title">2014 Sales</h4>
-                <p class="category">All products including Taxes</p>
-            </div>
-            <div class="content">
-                <div id="chartActivity" class="ct-chart"></div>
-            </div>
-            <div class="footer">
-                <div class="legend">
-                    <i class="fa fa-circle text-info"></i> Tesla Model S
-                    <i class="fa fa-circle text-danger"></i> BMW 5 Series
-                </div>
-                <hr>
-                <div class="stats">
-                    <i class="fa fa-check"></i> Data information certified
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="col-md-6">
         <div class="card ">

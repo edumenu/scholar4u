@@ -11,6 +11,10 @@
    <meta name="viewport" content="width=device-width" />
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <!--     Fonts and icons     -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+
     <!-- Bootstrap core CSS     -->
     <link href="{{ asset('css/admin_css/bootstrap.min.css') }}" rel="stylesheet">
 
@@ -24,29 +28,22 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <!--     Fonts and icons     -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <!-- Wow -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet">
+
     <link href="{{ asset('css/admin_css/pe-icon-7-stroke.css') }}" rel="stylesheet" />
 
+     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
+
 </head>
+
 <body>
-    <div id="app">
-
-
-
-
+    
       <div class="wrapper">
           <!-- -->
-          <div class="sidebar" data-color="purple" data-image="images/admin_images/full-screen-image-2.jpg">
-              <!--
+          <div class="sidebar" data-color="purple" data-image="/images/admin_images/full-screen-image-2.jpg">
 
-                  Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-                  Tip 2: you can also add an image using data-image tag
-
-              -->
-
-              <div class="logo">
+              <div class="logo animated fadeInDown">
                   <a href="http://www.creative-tim.com" class="simple-text logo-mini">
                       Ct
                   </a>
@@ -57,13 +54,13 @@
               </div>
 
           	<div class="sidebar-wrapper">
-                  <div class="user">
-      				<div class="info">
-      					<div class="photo">
-      	                    <img src="/images/admin_images/default-avatar.png" />
-      	                </div>
+              <div class="user">
+      				 <div class="info">
+      				  	<div class="photo">
+      	                    <img src="/storage/{{ Auth::user()->profile->image }}" />
+      	          </div>
 
-      					<a data-toggle="collapse" href="#collapseExample" class="collapsed">
+      					<a data-toggle="collapse" href="#collapseExample" class="collapsed animated fadeInDown">
       						<span>
       							{{ auth()->user()->name }}
       	                        <b class="caret"></b>
@@ -72,14 +69,21 @@
 
       					<div class="collapse" id="collapseExample">
       						<ul class="nav">
-      							<li>
-      								<a href="/profile">
-      									<span class="sidebar-mini">MP</span>
-      									<span class="sidebar-normal">My Profile</span>
+      							<li class="animated fadeInDown">
+      								<a href="/user/{{ Auth::user()->id }}/edit">
+      									<span class="sidebar-mini">MU</span>
+      									<span class="sidebar-normal">My User</span>
       								</a>
       							</li>
 
-      							<li>
+                    <li class="animated fadeInDown">
+                      <a href="/profile/{{ Auth::user()->id }}/edit">
+                        <span class="sidebar-mini">MP</span>
+                        <span class="sidebar-normal">My Profile</span>
+                      </a>
+                    </li>
+
+      							<li class="animated fadeInDown">
       								<a href="#pablo">
       									<span class="sidebar-mini">S</span>
       									<span class="sidebar-normal">Settings</span>
@@ -91,21 +95,21 @@
             </div>
 
       			<ul class="nav">
-      				<li class="{{ Request::is('adminFrontPage') ? 'active' : '' }}">
+      				<li class="{{ Request::is('adminFrontPage') ? 'active' : '' }} animated fadeInDown">
       					<a href="/adminFrontPage">
       						<i class="pe-7s-graph"></i>
       						<p>Dashboard</p>
       					</a>
       				</li>
 
-      				<li class="{{ Request::is('scholarshipTable') ? 'active' : '' }}">
+      				<li class="{{ Request::is('scholarshipTable') ? 'active' : '' }} animated fadeInDown">
       					<a href="/scholarshipTable">
                     <i class="pe-7s-news-paper"></i>
                     <p>Schorlaship Tables</p>
                 </a>
       				</li>
 
-              <li class="{{ Request::is('calendar') ? 'active' : '' }}">
+              <li class="{{ Request::is('calendar') ? 'active' : '' }} animated fadeInDown">
                 <a href="/calendar">
                     <i class="pe-7s-date"></i>
                     <p>Calendar</p>
@@ -117,7 +121,7 @@
           </div> <!-- /sidebar -->
 
 
-          <div class="main-panel">
+        <div class="main-panel">
       		<nav class="navbar navbar-default">
       			<div class="container-fluid">
       				<div class="navbar-minimize">
@@ -133,18 +137,19 @@
       						<span class="icon-bar"></span>
       						<span class="icon-bar"></span>
       					</button>
-      					<a class="navbar-brand" href="#">
+      					<a class="navbar-brand" href="#" style="font-size:1.5em;">
                   {{ Request::is('adminFrontPage') ? 'Dashboard' : '' }}
                   {{ Request::is('scholarshipTable') ? 'Scholarship Tables' : '' }}
                   {{ Request::is('calendar') ? 'Calendar' : '' }}
-
+                  {{ Request::is('profile/' . auth()->user()->id . '/edit') ? 'My Profile' : ''}}
+                  {{ Request::is('user/' . auth()->user()->id . '/edit') ? 'My User' : ''}}
                 </a>
       				</div>
       				<div class="collapse navbar-collapse">
 
       					<ul class="nav navbar-nav navbar-right">
 
-      						<li class="dropdown">
+      						<li class="dropdown ">
       							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
       								<i class="fa fa-bell-o"></i>
       								<span class="notification">5</span>
@@ -183,13 +188,15 @@
       								<li class="divider"></li>
 
       								<li>
-      									<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="text-danger">
+      									 {{-- <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="text-danger">
       										<i class="pe-7s-close-circle"></i>
       										Log out
-      									</a>
+      									</a>  --}}
+                        <a id="logoutButton" href="#" class="text-danger">
+                          <i class="pe-7s-close-circle"></i>
+                          Log out
+                        </a>
       								</li>
-                      <!-- Loout -->
-                      <!-- <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li> -->
 
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
@@ -198,11 +205,12 @@
       						</li>
 
       					</ul>
-      				</div>
-      			</div>
-      		</nav>
-
+      				 </div>
+      			  </div>
+      	    </nav>
+             
              @yield('content')
+             
 
               <footer class="footer">
                   <div class="container-fluid">
@@ -218,16 +226,6 @@
                                       Company
                                   </a>
                               </li>
-                              <li>
-                                  <a href="#">
-                                      Portfolio
-                                  </a>
-                              </li>
-                              <li>
-                                  <a href="#">
-                                     Blog
-                                  </a>
-                              </li>
                           </ul>
                       </nav>
                       <p class="copyright pull-right">
@@ -235,16 +233,9 @@
                       </p>
                   </div>
               </footer>
-
-          </div>
-      </div>
-
-
-
-
-
-
-    </div>
+         </div>
+       </div>
+    
 
     <!--   Core JS Files  -->
     <script src="{{ asset('js/admin_js/jquery.min.js') }}" type="text/javascript"></script>
@@ -297,18 +288,16 @@
     <!-- Light Bootstrap Dashboard Core javascript and methods -->
   <script src="{{ asset('js/admin_js/light-bootstrap-dashboard.js?v=1.4.1') }}"></script>
 
+  <!-- Vue app -->
+      {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
+
   <!-- Main js project -->
   <script src="{{ asset('js/admin_js/main.js') }}"></script>
 
     <script type="text/javascript">
         $().ready(function(){
-            lbd.checkFullPageBackgroundImage();
-
-            setTimeout(function(){
-                // after 1000 ms we add the class animated to the login/register card
-                $('.card').removeClass('card-hidden');
-            }, 700)
-        });
+    
+      });
     </script>
 
   </body>

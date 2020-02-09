@@ -53,7 +53,7 @@
 }
 
 .checkbox input[type="checkbox"]:checked + label::after{
-    color: $info-color;
+    color: $color-purple;
 }
 
 .checkbox input[type="checkbox"]:checked + label::before{
@@ -154,7 +154,7 @@
 }
 
 .radio input[type="radio"]:checked + label::after{
-    color: $info-color;
+    color: $color-purple;
 }
 
 
@@ -246,7 +246,7 @@
   z-index: 1;
   float: left;
   width: 50% !important;
-  background-color: $info-color;
+  background-color: $color-purple;
 }
 
 .bootstrap-switch .bootstrap-switch-handle-off{
@@ -297,7 +297,7 @@
 
 .bootstrap-switch.bootstrap-switch-on{
     .bootstrap-switch-handle-off{
-        background-color: $info-color;
+        background-color: $color-purple;
     }
 }
 

@@ -5,7 +5,6 @@
 
 <div class="wrapper wrapper-full-page">
     <div class="full-page login-page" data-color="purple" data-image="images/admin_images/full-screen-image-1.jpg">
-
     <!--   you can change the color of the filter page using: data-color="blue | azure | green | orange | red | purple" -->
         <div class="content">
             <div class="container">
@@ -13,7 +12,6 @@
                     <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
                         <form method="POST" action="{{ route('login') }}">
                           @csrf
-                        <!--   if you want to have the card without animation please remove the ".card-hidden" class   -->
                             <div class="card card-hidden">
                                 <div class="header text-center">{{ __('Login') }}</div>
                                 <div class="content">
@@ -25,7 +23,7 @@
 
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
-                                                <strong style="color: red;">{{ $message }}</strong>
+                                                <strong class="text-danger">{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
@@ -37,30 +35,17 @@
 
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
-                                                <strong style="color: red;">{{ $message }}</strong>
+                                                <strong class="text-danger">{{ $message }}</strong>
                                             </span>
                                         @enderror
                                    </div>
-
-                                   <!-- <div class="form-group row">
-                                      <div class="col-md-6 offset-md-4">
-                                          <div class="form-check">
-                                              <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                              <label class="form-check-label" for="remember">
-                                                  {{ __('Remember Me') }}
-                                              </label>
-                                          </div>
-                                      </div>
-                                  </div> -->
-
                                 </div>
 
 
                                 <div class="form-group row text-center">
                                         <button type="submit" class="btn btn-fill limeGreen btn-wd">
                                             {{ __('Login') }}
-                                        </button><br>
+                                        </button><br><br>
 
                                         @if (Route::has('password.request'))
                                             <a class="" href="{{ route('password.request') }}">
@@ -75,41 +60,7 @@
                 </div>
             </div>
         </div>
-
-    	<footer class="footer footer-transparent">
-            <div class="container">
-                <nav class="pull-left">
-                    <ul>
-                        <li>
-                            <a href="#">
-                                Home
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Company
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Portfolio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                               Blog
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- <p class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                </p> -->
-            </div>
-        </footer>
-
     </div>
-
 </div>
 
 @endsection

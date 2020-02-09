@@ -15,19 +15,20 @@ class AddedColumnsToProfileTable extends Migration
     {
         Schema::table('profiles', function (Blueprint $table) {
           $table->unsignedBigInteger('user_id');
+          $table->string('image')->nullable();
           $table->string('address')->nullable();
-          $table->string('Current School')->nullable();
-          $table->string('GPA')->nullable();
-          $table->string('Major')->nullable();
-          $table->tinyInteger('Phone number')->nullable();
-          $table->string('Birthday')->nullable();
-          $table->string('Citizenship')->nullable();
-          $table->string('Gender')->nullable();
-          $table->string('Disabilities')->nullable();
-          $table->string('Ethnicity')->nullable();
-          $table->string('Military')->nullable();
-          $table->string('Sports')->nullable();
-          $table->string('Fraternity')->nullable();
+          $table->string('current_school')->nullable();
+          $table->string('gpa')->nullable();
+          $table->string('major')->nullable();
+          $table->string('phone_number')->nullable();
+          $table->string('birthday')->nullable();
+          $table->string('citizenship')->nullable();
+          $table->string('gender')->nullable();
+          $table->string('disabilities')->nullable();
+          $table->string('ethnicity')->nullable();
+          $table->string('military')->nullable()->default('no');
+          $table->string('sports')->nullable();
+          $table->string('fraternity')->nullable();
 
           $table->index('user_id');
         });

@@ -134,6 +134,11 @@
     &.dropdown-red > li.selected > a{
         background-color: $light-red;
     }
+    &.dropdown-purple > li > a:hover,
+    &.dropdown-purple > li > a:focus,
+    &.dropdown-purple > li.selected > a{
+        background-color: $light-purple;
+    }
 
     & > li.disabled > a{
         background-color: transparent !important;

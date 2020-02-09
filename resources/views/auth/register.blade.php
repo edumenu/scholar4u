@@ -53,7 +53,7 @@
 
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                                <strong class="text-danger">{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
@@ -63,7 +63,7 @@
 
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                                <strong class="text-danger">{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
@@ -73,12 +73,12 @@
 
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                                <strong class="text-danger">{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <input id="password-confirm" placeholder="Re-enter Password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                        <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                     </div>
                                 </div>
 

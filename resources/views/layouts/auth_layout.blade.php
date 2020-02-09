@@ -32,9 +32,9 @@
 </head>
 <body>
     <div id="app">
-      <nav class="navbar navbar-transparent navbar-absolute">
+      <!-- <nav class="navbar navbar-transparent navbar-absolute">
               <div class="navbar-header">
-                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
                       <span class="sr-only">Toggle navigation</span>
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span>
@@ -42,7 +42,7 @@
                   </button>
                   <a class="navbar-brand" href="{{ url('/') }}">Welcome Page</a>
               </div>
-              <div class="collapse navbar-collapse">
+              <div class="collapse navbar-collapse" id="#navigation">
 
                   <ul class="nav navbar-nav navbar-right">
                       <li>
@@ -58,6 +58,31 @@
                       </li>
                   </ul>
               </div>
+      </nav> -->
+      <nav class="navbar-inverse navBarCustom" style="font-weight: 900 !important;">
+        <!-- <div class="container-fluid"> -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Scholar4U</a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              @if(Request::is('register'))
+              <li><a href="{{ route('login') }}"> Login </a></li>
+              @endif
+
+              @if(Request::is('login'))
+              <li><a href="{{ route('register') }}">Register</a></li>
+              @endif
+            </ul>
+          </div>
+        <!-- </div> -->
       </nav>
             @yield('content')
 

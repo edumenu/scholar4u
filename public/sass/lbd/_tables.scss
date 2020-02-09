@@ -22,8 +22,7 @@
 
     > thead > tr > th{
         border-bottom-width: 1px;
-        font-size: $font-size-small;
-        text-transform: uppercase;
+        font-size: 1.2em;
         color: $dark-gray;
         font-weight: $font-weight-normal;
         padding-bottom: 5px;
@@ -104,6 +103,10 @@
             width: 100%;
         }
     }
+}
+
+.tableIcon{
+  font-size: 1.3em;
 }
 
 @include table-row-variant('success', $light-green);
