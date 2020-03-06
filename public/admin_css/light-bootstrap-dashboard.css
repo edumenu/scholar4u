@@ -9049,12 +9049,12 @@ star {
 
 .dicussionCardTitle {
   color: grey;
-  margin-left: 3%;
   font-size: 1.8em;
+  margin-bottom: 3%;
 }
 
 .discussionSearchBar {
-  width: 30%;
+  width: 100%;
 }
 
 .hr-text {

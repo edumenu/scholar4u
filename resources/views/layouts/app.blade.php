@@ -46,11 +46,11 @@
                           <div class="main-menu  d-none d-lg-block">
                               <nav>
                                   <ul id="navigation">
-                                      <li><a class="active" href="{{ url('/') }}">home</a></li>
+                                      <li><a class="{{ Request::is('/') ? 'active' : '' }}" href="{{ url('/') }}">home</a></li>
 
-                                      <li><a href="{{ url('/about') }}">About</a></li>
+                                      <li><a class="{{ Request::is('about') ? 'active' : '' }}" href="{{ url('/about') }}">About</a></li>
 
-                                      <li><a href="{{ url('/contact') }}">Contact</a></li>
+                                      <li><a class="{{ Request::is('contact') ? 'active' : '' }}" href="{{ url('/contact') }}">Contact</a></li>
                                    @guest
                                       <li> <a href="{{ route('login') }}" class="login">
                                             <span>{{ __('Login') }}</span>

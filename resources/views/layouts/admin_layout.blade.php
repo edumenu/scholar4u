@@ -24,6 +24,8 @@
     <!-- Scripts -->
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
 
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -33,12 +35,12 @@
 
     <link href="{{ asset('css/admin_css/pe-icon-7-stroke.css') }}" rel="stylesheet" />
 
-     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
-
 </head>
 
 <body>
     
+  
+
       <div class="wrapper">
           <!-- -->
           <div class="sidebar" data-color="purple" data-image="/images/admin_images/full-screen-image-2.jpg">
@@ -57,7 +59,7 @@
               <div class="user">
       				 <div class="info">
       				  	<div class="photo">
-      	                    <img src="/storage/{{ Auth::user()->profile->image }}" />
+                        <img src="{{ auth()->user()->profile->profileImage() }}" class="imageSize" alt="profile image">
       	          </div>
 
       					<a data-toggle="collapse" href="#collapseExample" class="collapsed animated fadeInDown">
@@ -65,7 +67,7 @@
       							{{ auth()->user()->name }}
       	                        <b class="caret"></b>
       						</span>
-                          </a>
+                </a>
 
       					<div class="collapse" id="collapseExample">
       						<ul class="nav">
@@ -97,14 +99,14 @@
       			<ul class="nav">
       				<li class="{{ Request::is('adminFrontPage') ? 'active' : '' }} animated fadeInDown">
       					<a href="/adminFrontPage">
-      						<i class="pe-7s-graph"></i>
+      						<i class="pe-7s-home"></i>
       						<p>Dashboard</p>
       					</a>
       				</li>
 
       				<li class="{{ Request::is('scholarshipTable') ? 'active' : '' }} animated fadeInDown">
       					<a href="/scholarshipTable">
-                    <i class="pe-7s-news-paper"></i>
+                    <i class="pe-7s-display2"></i>
                     <p>Schorlaship Tables</p>
                 </a>
       				</li>
@@ -113,6 +115,20 @@
                 <a href="/calendar">
                     <i class="pe-7s-date"></i>
                     <p>Calendar</p>
+                </a>
+              </li>
+
+              <li class="{{ Request::is('discussionBoard') ? 'active' : '' }} animated fadeInDown">
+                <a href="/discussionBoard">
+                    <i class="pe-7s-chat"></i>
+                    <p>Discussion Board</p>
+                </a>
+              </li>
+
+              <li class="{{ Request::is('messages') ? 'active' : '' }} animated fadeInDown">
+                <a href="/messages">
+                    <i class="pe-7s-mail"></i>
+                    <p>Messages</p>
                 </a>
               </li>
 
@@ -143,6 +159,10 @@
                   {{ Request::is('calendar') ? 'Calendar' : '' }}
                   {{ Request::is('profile/' . auth()->user()->id . '/edit') ? 'My Profile' : ''}}
                   {{ Request::is('user/' . auth()->user()->id . '/edit') ? 'My User' : ''}}
+                  {{ Request::is('discussionBoard') ? 'Discussion Board' : ''}}
+                  {{ Request::is('discussionBoard/create') ? 'Add Post' : ''}}
+                  {{-- {{ Request::is('discussionBoard') ? 'Post' : ''}} --}}
+                  {{ Request::is('messages') ? 'Messages' : ''}}
                 </a>
       				</div>
       				<div class="collapse navbar-collapse">
@@ -188,10 +208,6 @@
       								<li class="divider"></li>
 
       								<li>
-      									 {{-- <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="text-danger">
-      										<i class="pe-7s-close-circle"></i>
-      										Log out
-      									</a>  --}}
                         <a id="logoutButton" href="#" class="text-danger">
                           <i class="pe-7s-close-circle"></i>
                           Log out
@@ -208,8 +224,11 @@
       				 </div>
       			  </div>
       	    </nav>
+
+            
              
              @yield('content')
+
              
 
               <footer class="footer">
@@ -240,7 +259,7 @@
     <!--   Core JS Files  -->
     <script src="{{ asset('js/admin_js/jquery.min.js') }}" type="text/javascript"></script>
     <!--  Charts Plugin -->
-    <script src="{{ asset('js/admin_js/chartist.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/admin_js/chartist.min.js') }}"></script> --}}
 
   <script src="{{ asset('js/admin_js/bootstrap.min.js') }}" type="text/javascript"></script>
 
@@ -287,10 +306,7 @@
 
     <!-- Light Bootstrap Dashboard Core javascript and methods -->
   <script src="{{ asset('js/admin_js/light-bootstrap-dashboard.js?v=1.4.1') }}"></script>
-
-  <!-- Vue app -->
-      {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
-
+      
   <!-- Main js project -->
   <script src="{{ asset('js/admin_js/main.js') }}"></script>
 

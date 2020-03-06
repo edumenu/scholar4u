@@ -24,6 +24,15 @@ Route::get('/scholarshipTable', 'AdminController@scholarshipTable')->name('schol
 
 Route::get('/calendar', 'CalendarController@index')->name('calendar.show');
 
+Route::get('/discussionBoard', 'PostController@index')->name('post.index');
+Route::get('/discussionBoard/create', 'PostController@create')->name('post.create');
+Route::get('/discussionBoard/loan', 'PostController@showLoan')->name('post.showLoan');
+Route::get('/discussionBoard/all', 'PostController@showAll')->name('post.showAll');
+Route::patch('/discussionBoard', 'PostController@store')->name('post.store');
+Route::get('/discussionBoard/{post}', 'PostController@show')->name('post.show');
+
+Route::patch('/comment/{post}', 'CommentController@store')->name('comment.store');
+
 Route::get('/profile/{user}/edit', 'ProfileController@edit')->name('profile.edit');
 Route::patch('/profile/{user}', 'ProfileController@update')->name('profile.update');
 

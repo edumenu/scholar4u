@@ -5,14 +5,14 @@
            @if(session()->has('status'))
   
             <script>
-             var delayInMilliseconds = 1000;
+             let promise = new Promise(function(resolve, reject){
+                setTimeout(() => resolve('{{ session()->get('status') }}'), 1000);
+             });
 
-             setTimeout(function() {
-
-                showNotification('top','right','{{ session()->get('status') }}');
-
-             }, delayInMilliseconds);
-
+             promise.then(
+                result => showNotification('top','right','{{ session()->get('status') }}'),
+                error => alert("There was an error")
+              );
            </script>
 
           @endif
@@ -21,10 +21,10 @@
             <div class="row justify-content-md-center">
                 <div class="col-sm-10">
                     <div class="card">
-                        <div class="header">
-                            <h1 class="title text-center">Edit User</h1>
-                        </div>
-                        <div class="content">
+                          <div class="jumbotronEditProfileUser">
+                              <h1 class="text-center">Edit User</h1>
+                          </div>
+                        <div class="content purpleText">
                             <form action="/user/{{ $user->id }}" enctype="multipart/form-data" method="post">
                               @csrf
                               @method('PATCH')  <!-- This converts the method to Patch method -->

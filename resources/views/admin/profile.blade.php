@@ -6,13 +6,14 @@
   @if(session()->has('status'))
   
   <script>
-   var delayInMilliseconds = 1000;
+     let promise = new Promise(function(resolve, reject){
+        setTimeout(() => resolve('{{ session()->get('status') }}'), 1000);
+     });
 
-   setTimeout(function() {
-
-      showNotification('top','right','{{ session()->get('status') }}');
-
-   }, delayInMilliseconds);
+     promise.then(
+        result => showNotification('top','right','{{ session()->get('status') }}'),
+        error => alert("There was an error")
+      );
 
  </script>
 
@@ -22,22 +23,22 @@
     <div class="row justify-content-md-center">
       <div class="col-sm-10">
         <div class="card">
-          <div class="header">
-            <h1 class="title text-center">Edit Profile</h1>
+          <div class="jumbotronEditProfileUser">
+              <h1 class="text-center">Edit Profile</h1>
           </div>
-          <div class="content">
+          <div class="content purpleText">
             <form action="/profile/{{ $user->id }}" enctype="multipart/form-data" method="post">
               @csrf
               @method('PATCH')  <!-- This converts the method to Patch method -->
               
               <div class="row">
-                <img src="/storage/{{ $user->profile->image }}" class="imageSize" alt="profile image">
+
+                  <img src="{{ $user->profile->profileImage() }}" class="imageSize" alt="profile image" style="margin-left: 8px;">
+                
               </div>
               <div class="row">
                 <div class="col-md-4" style="margin-top: 15px;">
-                  {{-- <div class="container" style="margin-top: 80%;">  --}}
                       <input type="file" class="form-control-file" id="image" name="image"></br>  
-                   {{-- </div> --}}
                     @if ($errors->has('image'))
                         <strong class="text-danger">{{ $errors->first('image') }}</strong>
                     @endif

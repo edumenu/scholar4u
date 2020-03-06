@@ -1,8 +1,50 @@
 @extends('layouts.admin_layout')
 
 @section('content')
-<div class="main-content">
+<div class="content">
   <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3 col-sm-6">
+            <div class="card statCard">
+              <div class="card-body text-center">
+                <i class="pe-7s-users statIcon" style="color: red;"></i>
+              </div>
+                <div class="card-footer text-muted">
+                    Number of user accounts/profiles: 
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="card statCard">
+              <div class="card-body text-center">
+                <i class="pe-7s-ribbon statIcon" style="color: purple;"></i>
+              </div>
+                <div class="card-footer text-muted">
+                    Number of scholarships:
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="card statCard">
+              <div class="card-body text-center">
+                <i class="pe-7s-id statIcon" style="color: green;"></i>
+              </div>
+              <div class="card-footer text-muted">
+                    Number of Admin accounts:
+              </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="card statCard">
+              <div class="card-body text-center">
+                <i class="pe-7s-comment statIcon" style="color: orange;"></i>
+              </div>
+                <div class="card-footer text-muted">
+                    Number of discussion posts:
+                </div>
+            </div>
+        </div>
+    </div>
 
 <div class="row">
    <div class="col-md-12">

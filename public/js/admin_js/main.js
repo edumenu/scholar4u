@@ -9,8 +9,6 @@ $().ready(function() {
     window_width = $(window).width();
 
     // Init Datetimepicker
-
-
         $('.datepicker').datetimepicker({
             format: 'MM/DD/YYYY',
             icons: {
@@ -62,28 +60,28 @@ $().ready(function() {
 });
 
 /********** Pie chart for dashboard ************/
-var dataPerformance = {
-  labels: ['9pm', '2am', '8am', '2pm', '8pm'],
-  series: [
-    [1, 6, 8, 7, 4, 7, 8, 12, 16, 17, 14, 13]
-  ]
-};
+// var dataPerformance = {
+//   labels: ['9pm', '2am', '8am', '2pm', '8pm'],
+//   series: [
+//     [1, 6, 8, 7, 4, 7, 8, 12, 16, 17, 14, 13]
+//   ]
+// };
 
-var optionsPerformance = {
-  showPoint: false,
-  lineSmooth: true,
-  axisX: {
-    showGrid: false,
-    showLabel: true
-  },
-  axisY: {
-    offset: 40,
-  },
-  low: 0,
-  high: 20
-};
+// var optionsPerformance = {
+//   showPoint: false,
+//   lineSmooth: true,
+//   axisX: {
+//     showGrid: false,
+//     showLabel: true
+//   },
+//   axisY: {
+//     offset: 40,
+//   },
+//   low: 0,
+//   high: 20
+// };
 
-Chartist.Line('#chartPerformance', dataPerformance, optionsPerformance);
+// Chartist.Line('#chartPerformance', dataPerformance, optionsPerformance);
 
 
 /***********  Vetcor map  **************/
@@ -246,3 +244,5 @@ var mapData = {
   $("#logoutButton").on('click', function(){
          showSwal();
     });
+
+    
