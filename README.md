@@ -1,4 +1,4 @@
-
+![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
 # scholar4U
 Scholar4U is a personalized scholarship search tool that provides an easier and faster way to access scholarships for scholars everywhere. We hope to bridge the gap by eliminating countless hours spent on finding scholarships and spend those hours where they really count
 
