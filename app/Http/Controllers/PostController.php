@@ -6,6 +6,7 @@ use App\User;
 use App\Post;
 use App\Comment;
 use Illuminate\Http\Request;
+use App\Http\Resources\Post as PostResource;
 
 class PostController extends Controller
 {
@@ -16,10 +17,8 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::latest()->paginate(5);
-
-    	return view('admin.discussion_board.index', compact('posts'));
-        //return view('admin.discussion_board.index', compact('posts'));
+        //Return collection of posts;
+    	return view('admin.discussion_board.index');
     }
 
     public function create(){
@@ -27,13 +26,12 @@ class PostController extends Controller
     }
 
     public function store(){
-    	
+
     	$data = request()->validate([
     		'post_title' => 'required',
     		'post_content' => 'required',
             'post_category' => 'nullable'
     	]);
-
 
     	auth()->user()->posts()->create($data);
 
@@ -43,21 +41,7 @@ class PostController extends Controller
 
     }
 
-    public function show(Post $post)
-    {
-        $postComments = Comment::where('comment_post_id',$post->id)->latest()->paginate(3);
-
-        return view('admin.discussion_board.show', compact('post','postComments'));
-    }
-
-    public function showAll()
-    {
-        $posts = Post::latest()->paginate(5);
-
-        return view('admin.discussion_board.index', compact('posts','postComments'));
-    }
-
-    public function showLoan()
+    public function delete()
     {
         $posts = Post::where('post_category','loan')->latest()->paginate(8);
 

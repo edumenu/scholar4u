@@ -38,8 +38,8 @@
 </head>
 
 <body>
-    
-  
+
+
 
       <div class="wrapper">
           <!-- -->
@@ -225,11 +225,11 @@
       			  </div>
       	    </nav>
 
-            
-             
+
+
              @yield('content')
 
-             
+
 
               <footer class="footer">
                   <div class="container-fluid">
@@ -254,7 +254,7 @@
               </footer>
          </div>
        </div>
-    
+
 
     <!--   Core JS Files  -->
     <script src="{{ asset('js/admin_js/jquery.min.js') }}" type="text/javascript"></script>
@@ -306,13 +306,13 @@
 
     <!-- Light Bootstrap Dashboard Core javascript and methods -->
   <script src="{{ asset('js/admin_js/light-bootstrap-dashboard.js?v=1.4.1') }}"></script>
-      
+
   <!-- Main js project -->
   <script src="{{ asset('js/admin_js/main.js') }}"></script>
 
     <script type="text/javascript">
         $().ready(function(){
-    
+
       });
     </script>
 

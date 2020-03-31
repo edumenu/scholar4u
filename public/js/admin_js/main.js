@@ -232,12 +232,12 @@ var mapData = {
           }).then(function() {
 
             window.location.href = 'http://scholar4u.me/logout';
-            event.preventDefault(); 
+            event.preventDefault();
             document.getElementById('logout-form').submit();
 
           }, function(dismiss) {
             // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
-           
+
           });
     }
 
@@ -245,4 +245,3 @@ var mapData = {
          showSwal();
     });
 
-    
