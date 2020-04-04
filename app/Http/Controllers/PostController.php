@@ -15,10 +15,10 @@ class PostController extends Controller
       $this->middleware('auth');
     }
 
-    public function index()
+    public function index(User $user)
     {
         //Return collection of posts;
-    	return view('admin.discussion_board.index');
+    	return view('admin.discussion_board.index', compact('user'));
     }
 
     public function create(){
@@ -32,6 +32,11 @@ class PostController extends Controller
     		'post_content' => 'required',
             'post_category' => 'nullable'
     	]);
+
+        // Obtaining the user ID
+        $tempImage = auth()->user()->profile->image;
+
+        $data['post_user_picture'] = $tempImage;
 
     	auth()->user()->posts()->create($data);
 

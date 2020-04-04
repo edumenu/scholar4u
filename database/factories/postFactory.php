@@ -21,6 +21,9 @@ $factory->define(Post::class, function (Faker $faker) {
     return [
         'post_title' => $faker->sentence(10),
         'user_id' => $faker->numberBetween($min = 1, $max = 2),
+        'post_user_name' => $faker->randomElement($array = array ('Edem Dumenu','Cathy Odametey','Selase Dumenu')),
+        'post_user_picture' => $faker->randomElement($array = array ('uploads/J9gNPeOlZtLOUHu7i5nud3gluB9w4CyqpxHdBdvT.jpeg',
+            'uploads/kOCioUs2QRfHb51jXhrzklEjf3xeVSCpoXyeS6Al.jpeg','uploads/sPH4AqXRryloDOzC5vTCHAC4p3Xy0ZmRf7tNRrW2.jpeg')),
         'post_category' => $faker->randomElement($array = array ('all','scholarship','loan','other')),
         'post_content' => $faker->paragraph(2),
         'post_comment_count' => $faker->numberBetween($min = 1, $max = 10),

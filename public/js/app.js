@@ -1960,23 +1960,101 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      posts: {}
+      posts: [],
+      post_error: '',
+      loading: true,
+      errored: false,
+      scholarshipActive: false,
+      post: {
+        id: '',
+        created_at: '',
+        post_title: '',
+        user_id: '',
+        post_user_name: '',
+        post_user_picture: '',
+        post_category: '',
+        post_comment_count: '',
+        post_view_count: ''
+      },
+      post_id: '',
+      pagination: {}
     };
   },
-  mounted: function mounted() {
-    axios.get('http://scholar4u.me/discussionBoard').then(function (response) {
-      //this.posts = response.data.posts;
-      console.log("test 22!");
-      console.log(response);
-    })["catch"](function (errors) {
-      if (errors.response.status == 401) {
-        window.location = '/discussionBoard';
-      }
-    });
-  }
+  computed: {
+    //Function dynamically adds scholarshipCardBorder to the class
+    scholarshipCheck: function scholarshipCheck() {
+      return "scholarshipCardBorder";
+    },
+    //Function adds scholarshipCardBorder to the class
+    loanCheck: function loanCheck() {
+      return "loanCardBorder";
+    },
+    //Function adds scholarshipCardBorder to the class
+    otherCheck: function otherCheck() {
+      return "otherCardBorder";
+    }
+  },
+  created: function created() {
+    this.fetchPosts();
+  },
+  methods: {
+    //Function to make get requests for all posts
+    fetchPosts: function fetchPosts() {
+      var _this = this;
+
+      axios.get('api/posts').then(function (response) {
+        _this.posts = JSON.parse(JSON.stringify(response.data.data));
+        console.log(JSON.parse(JSON.stringify(response.data.data)));
+      })["catch"](function (errors) {
+        if (errors.response.status === 405) {
+          _this.errored = true;
+        }
+      })["finally"](function () {
+        return _this.loading = false;
+      });
+    },
+    // Function for returning pictures
+    imgUrl: function imgUrl(image) {
+      return '/storage/' + image;
+    },
+    // This function loads static images
+    loadingImage: function loadingImage() {
+      return '/images/admin_images/eclipse.gif';
+    },
+    //Function for dynamically changing the category types
+    categoryClick: function categoryClick(value) {
+      var _this2 = this;
+
+      axios.get('api/posts/' + value).then(function (response) {
+        _this2.posts = JSON.parse(JSON.stringify(response.data.data));
+      })["catch"](function (errors) {
+        if (errors.response.status === 405) {
+          _this2.errored = true;
+        }
+      })["finally"](function () {
+        return _this2.loading = false;
+      });
+    }
+  },
+  mounted: function mounted(category) {}
 });
 
 /***/ }),
@@ -37355,7 +37433,7 @@ var render = function() {
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "col-md-10" }, [
-      _c("h1", [_vm._v("Category")]),
+      _c("h3", [_vm._v("Category")]),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
         _c(
@@ -37367,13 +37445,13 @@ var render = function() {
           },
           [
             _c(
-              "button",
+              "a",
               {
                 staticClass: "btn btn-neutral btn-fill",
                 attrs: { type: "button" },
                 on: {
                   click: function($event) {
-                    return _vm.messageClick("all")
+                    return _vm.categoryClick("")
                   }
                 }
               },
@@ -37381,13 +37459,13 @@ var render = function() {
             ),
             _vm._v(" "),
             _c(
-              "button",
+              "a",
               {
                 staticClass: "btn btn-info btn-fill",
                 attrs: { type: "button" },
                 on: {
                   click: function($event) {
-                    return _vm.messageClick("scholarship")
+                    return _vm.categoryClick("scholarships")
                   }
                 }
               },
@@ -37395,13 +37473,13 @@ var render = function() {
             ),
             _vm._v(" "),
             _c(
-              "button",
+              "a",
               {
                 staticClass: "btn btn-danger btn-fill",
                 attrs: { type: "button" },
                 on: {
                   click: function($event) {
-                    return _vm.messageClick("loan")
+                    return _vm.categoryClick("loans")
                   }
                 }
               },
@@ -37409,13 +37487,13 @@ var render = function() {
             ),
             _vm._v(" "),
             _c(
-              "button",
+              "a",
               {
                 staticClass: "btn btn-warning btn-fill",
                 attrs: { type: "button" },
                 on: {
                   click: function($event) {
-                    return _vm.messageClick("other")
+                    return _vm.categoryClick("others")
                   }
                 }
               },
@@ -37427,11 +37505,84 @@ var render = function() {
         _vm._m(1)
       ]),
       _vm._v(" "),
-      _vm._m(2),
-      _vm._v(" "),
-      _c("h1", { staticClass: "text-center" }, [
-        _vm._v("There are no posts yet.")
-      ])
+      _vm.errored
+        ? _c("section", [
+            _c("h1", { staticClass: "text-center" }, [
+              _vm._v(
+                "Unable to retrieve this information at the moment, please try again later."
+              )
+            ])
+          ])
+        : _c(
+            "section",
+            [
+              _vm.loading
+                ? _c("div", [
+                    _c("img", {
+                      staticStyle: { "margin-left": "40%" },
+                      attrs: { src: _vm.loadingImage() }
+                    })
+                  ])
+                : _vm._l(_vm.posts, function(post) {
+                    return _c("div", { key: post.id }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "dicussionCard",
+                          class: [
+                            post.post_category === "scholarship"
+                              ? _vm.scholarshipCheck
+                              : "",
+                            post.post_category === "loan" ? _vm.loanCheck : "",
+                            post.post_category === "other" ? _vm.otherCheck : ""
+                          ]
+                        },
+                        [
+                          _c("div", { staticClass: "dicussionCardHeader" }, [
+                            _c("img", {
+                              staticStyle: {
+                                width: "40px",
+                                "border-radius": "50%"
+                              },
+                              attrs: { src: _vm.imgUrl(post.post_user_picture) }
+                            }),
+                            _vm._v(
+                              "\n                                     " +
+                                _vm._s(post.post_user_name) +
+                                "\n                                 "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "container",
+                              staticStyle: { "padding-bottom": "10px" }
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "dicussionCardTitle",
+                                  staticStyle: { "margin-bottom": "3%" }
+                                },
+                                [
+                                  _c("a", { attrs: { href: "" } }, [
+                                    _vm._v(" " + _vm._s(post.post_title) + " ")
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _vm._m(2, true)
+                            ]
+                          )
+                        ]
+                      )
+                    ])
+                  })
+            ],
+            2
+          )
     ])
   ])
 }
@@ -37441,7 +37592,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-2" }, [
-      _c("h1", [_vm._v("Search")]),
+      _c("h3", [_vm._v("Search")]),
       _vm._v(" "),
       _c("div", { staticClass: "input-group" }, [
         _c("span", { staticClass: "input-group-addon" }, [
@@ -37473,48 +37624,21 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "dicussionCard" }, [
-      _c("div", { staticClass: "dicussionCardHeader" }, [
-        _c("img", {
-          staticStyle: { width: "40px", "border-radius": "50%" },
-          attrs: { src: "", alt: "Avatar" }
-        })
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "container", staticStyle: { "padding-bottom": "10px" } },
-        [
-          _c(
-            "div",
-            {
-              staticClass: "dicussionCardTitle",
-              staticStyle: { "margin-bottom": "3%" }
-            },
-            [_c("a", { attrs: { href: "" } })]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "col-md-10", staticStyle: { color: "grey" } },
-            [
-              _c(
-                "a",
-                {
-                  staticClass: "btn btn-success btn-fill",
-                  attrs: { href: "" }
-                },
-                [_vm._v("Comment")]
-              ),
-              _vm._v("   Comments: "),
-              _c("span"),
-              _vm._v("   Posted: "),
-              _c("span")
-            ]
-          )
-        ]
-      )
-    ])
+    return _c(
+      "div",
+      { staticClass: "col-md-10", staticStyle: { color: "grey" } },
+      [
+        _c(
+          "a",
+          { staticClass: "btn btn-success btn-fill", attrs: { href: "" } },
+          [_vm._v("Comment")]
+        ),
+        _vm._v("   Comments: "),
+        _c("span"),
+        _vm._v("   Posted: "),
+        _c("span")
+      ]
+    )
   }
 ]
 render._withStripped = true

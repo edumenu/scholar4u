@@ -37,6 +37,7 @@ class PostApiController extends Controller
 
         $post->post_title = $request->input('post_title');
         $post->user_id = $request->input('user_id');
+        $post->post_user_name = $request->input('post_user_name');
         $post->post_content = $request->input('post_content');
         $post->post_category = $request->input('post_category');
         $post->post_comment_count = 0;
@@ -100,27 +101,27 @@ class PostApiController extends Controller
     public function loans()
     {
         //Get one post
-        $post = Post::where('post_category','loan')->orderBy('created_at')->get();
+        $post = Post::where('post_category','loan')->orderBy('created_at','desc')->paginate(10);
 
         //Return posts
-        return new PostResource($post);
+        return PostResource::collection($post);
     }
 
     public function scholarships()
     {
         //Get posts with scholarship
-        $post = Post::where('post_category','scholarships')->orderBy('created_at')->get();
+        $post = Post::where('post_category','scholarship')->orderBy('created_at','desc')->paginate(10);
 
         //Return one post
-        return new PostResource($post);
+        return PostResource::collection($post);
     }
 
     public function others()
     {
         //Get posts with other
-        $post = Post::where('post_category','other')->orderBy('created_at')->get();
+        $post = Post::where('post_category','other')->orderBy('created_at','desc')->paginate(10);
 
         //Return one post
-        return new PostResource($post);
+        return PostResource::collection($post);
     }
 }

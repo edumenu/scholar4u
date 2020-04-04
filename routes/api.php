@@ -22,7 +22,7 @@ Route::get('posts','PostApiController@index')->name('post.index');
 //Loan Posts
 Route::get('posts/loans','PostApiController@loans');
 //Loan Posts
-Route::get('posts/scholarships','PostApiController@scholarship');
+Route::get('posts/scholarships','PostApiController@scholarships');
 //Loan Posts
 Route::get('posts/others','PostApiController@others');
 //Single Post

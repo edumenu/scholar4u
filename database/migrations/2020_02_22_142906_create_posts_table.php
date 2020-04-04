@@ -17,7 +17,9 @@ class CreatePostsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('post_title');
-            $table->unsignedBigInteger('user_id');     //reference to the User's id. FOreign key
+            $table->unsignedBigInteger('user_id');     //reference to the User's id. Foreign key
+            $table->string('post_user_name');
+            $table->string('post_user_picture');
             $table->string('post_category')->nullable();
             $table->string('post_content');
             $table->string('post_comment_count')->default('0');

@@ -15,7 +15,6 @@ class Profile extends Model
         return '/storage/' . $imagePath;
     }
 
-  
   //Fetching a user ID
   public function user()
   {

@@ -3,7 +3,7 @@
          <div class="container-fluid">
 
              <div class="col-sm-2">
-               <h1>Search</h1>
+               <h3>Search</h3>
 
                       <div class="input-group">
                           <span class="input-group-addon"><i class="fa fa-search"></i></span>
@@ -14,63 +14,141 @@
 
              <div class="col-md-10">
 
-                  <h1>Category</h1>
+                  <h3>Category</h3>
 
                   <div class="row">
 
 	              	<div class="btn-group" role="group" aria-label="Basic example" style="margin-bottom: 5px;">
-				      <button type="button" class="btn btn-neutral btn-fill" @click="messageClick('all')">All</button>
-				      <button type="button" class="btn btn-info btn-fill" @click="messageClick('scholarship')">Scholarship</button>
-				      <button type="button" class="btn btn-danger btn-fill" @click="messageClick('loan')">Loan</button>
-				      <button type="button" class="btn btn-warning btn-fill" @click="messageClick('other')">Other</button>
+				      <a type="button" class="btn btn-neutral btn-fill" @click="categoryClick('')">All</a>
+				      <a type="button" class="btn btn-info btn-fill" @click="categoryClick('scholarships')">Scholarship</a>
+				      <a type="button" class="btn btn-danger btn-fill" @click="categoryClick('loans')">Loan</a>
+				      <a type="button" class="btn btn-warning btn-fill" @click="categoryClick('others')">Other</a>
 				    </div>
 
                     <a href="discussionBoard/create" class="btn btn-primary btn-fill" style="float: right;">Add Post <i class="fa fa-plus"></i></a>
                   </div>
 
-                      <div class="dicussionCard">
-                        <div class="dicussionCardHeader">
-                          <img src="" alt="Avatar" style="width:40px; border-radius: 50%;">
-                        </div>
+                     <section v-if="errored">
+                         <h1 class="text-center">Unable to retrieve this information at the moment, please try again later.</h1>
+                     </section>
 
-                          <div class="container" style="padding-bottom: 10px;">
+                     <section v-else>
+                         <div v-if="loading"><img :src="loadingImage()" style="margin-left: 40%;"></div>
 
-                           <div class="dicussionCardTitle" style="margin-bottom: 3%;"> <a href=""> </a> </div>
+                         <div v-else v-for="post in posts" v-bind:key="post.id">
 
-                           <div class="col-md-10" style="color: grey;">
-                            <a href="" class="btn btn-success btn-fill">Comment</a> &nbsp; Comments: <span></span> &nbsp; Posted: <span></span>
-                           </div>
-                          </div>
-                     </div>
+                             <div class="dicussionCard" :class="[
+                                 post.post_category === 'scholarship' ? scholarshipCheck : '',
+                                 post.post_category === 'loan' ? loanCheck : '',
+                                 post.post_category === 'other' ? otherCheck : '',
+                                 ]">
 
-                   <h1 class="text-center">There are no posts yet.</h1>
+                                 <div class="dicussionCardHeader">
+                                     <img :src="imgUrl(post.post_user_picture)" style="width:40px; border-radius: 50%;">
+                                     {{ post.post_user_name }}
+                                 </div>
 
+                                 <div class="container" style="padding-bottom: 10px;">
+                                     <div class="dicussionCardTitle" style="margin-bottom: 3%;"> <a href=""> {{ post.post_title }} </a> </div>
+
+                                     <div class="col-md-10" style="color: grey;">
+                                         <a href="" class="btn btn-success btn-fill">Comment</a> &nbsp; Comments: <span></span> &nbsp; Posted: <span></span>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+
+                     </section>
              </div>
-     </div>
+          </div>
+
 
 </template>
 
 <script>
   export default {
-
-    data: function () {
+      data: function () {
           return {
-            posts: {},
+              posts: [],
+              post_error: '',
+              loading: true,
+              errored: false,
+              scholarshipActive: false,
+            post: {
+                id: '',
+                created_at: '',
+                post_title: '',
+                user_id: '',
+                post_user_name: '',
+                post_user_picture: '',
+                post_category: '',
+                post_comment_count: '',
+                post_view_count: '',
+            },
+              post_id: '',
+              pagination: {}
           }
         },
 
-        mounted: function() {
-           axios.get('http://scholar4u.me/discussionBoard').then(response=>{
-                 //this.posts = response.data.posts;
+      computed: {
+          //Function dynamically adds scholarshipCardBorder to the class
+          scholarshipCheck(){
+              return "scholarshipCardBorder";
+          },
+          //Function adds scholarshipCardBorder to the class
+          loanCheck(){
+              return "loanCardBorder";
+          },
+          //Function adds scholarshipCardBorder to the class
+          otherCheck(){
+              return "otherCardBorder";
+          }
+      },
 
-                 console.log("test 22!");
-                 console.log(response);
-            })
-            .catch(errors => {
-                if (errors.response.status == 401) {
-                  window.location = '/discussionBoard';
+      created() {
+          this.fetchPosts();
+        },
+
+      methods: {
+          //Function to make get requests for all posts
+        fetchPosts() {
+            axios.get('api/posts')
+                .then(response=>{
+                this.posts = JSON.parse(JSON.stringify(response.data.data));
+                console.log(JSON.parse(JSON.stringify(response.data.data)));
+            }).catch(errors => {
+                    if (errors.response.status === 405) {
+                        this.errored = true;
+                    }
+                })
+            .finally(() => this.loading = false)
+        },
+
+          // Function for returning pictures
+          imgUrl(image){
+            return '/storage/' + image;
+          },
+
+          // This function loads static images
+          loadingImage(){
+           return '/images/admin_images/eclipse.gif';
+          },
+
+          //Function for dynamically changing the category types
+          categoryClick(value){
+              axios.get('api/posts/' + value)
+                  .then(response=>{
+                      this.posts = JSON.parse(JSON.stringify(response.data.data));
+                  }).catch(errors => {
+                  if (errors.response.status === 405) {
+                      this.errored = true;
                   }
-            });
+              })
+                  .finally(() => this.loading = false)
+          },
+      },
+
+      mounted: function(category) {
         },
 
   }
