@@ -16,19 +16,19 @@
 }
 
 .statCard{
-	width: 100%; 
+	width: 100%;
 	padding: 20px;
 	margin-top: 10px;
 }
 
 .statIcon{
-	font-size:5em; 
+	font-size:5em;
 	padding-bottom: 20px;
 }
 
 .dicussionCard{
-	border-radius: 30%;
-    background-color: #FFFFFF;
+    border-style: solid;
+    background-color: #f59d14;
 	border-radius: 10px;
 	margin-bottom: 10px;
 }
@@ -63,13 +63,13 @@
 
 .dicussionCardHeader{
 	background: rgba(237,237,237,1);
-	padding: 10px 0 5px 5px; 
+	padding: 10px 0 5px 5px;
 	border-bottom: 1px solid #DCDCDC;
 }
 
 .dicussionCardTitle{
-	color: grey; 
-	//margin-left: 3%; 
+	color: grey;
+	//margin-left: 3%;
 	font-size: 1.8em;
   margin-bottom: 3%;
 }

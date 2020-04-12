@@ -311,9 +311,9 @@
   <script src="{{ asset('js/admin_js/main.js') }}"></script>
 
     <script type="text/javascript">
-        $().ready(function(){
+        $("#postDelete").on('click', function(){
 
-      });
+        });
     </script>
 
   </body>

@@ -1975,7 +1975,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['userLoginId'],
   data: function data() {
     return {
       posts: [],
@@ -2015,21 +2054,63 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.fetchPosts();
   },
+  filters: {
+    // This function truncate string of more than 40 characters
+    truncate: function truncate(value) {
+      var dots = "...";
+      return value.length > 40 ? value.slice(0, 40) + dots : value;
+    },
+    //This function creates a date format
+    dateFormat: function dateFormat(value) {
+      var dateData = new Date(value);
+      return dateData.getMonth() + "/" + dateData.getDay() + "/" + dateData.getFullYear();
+    }
+  },
   methods: {
     //Function to make get requests for all posts
-    fetchPosts: function fetchPosts() {
+    fetchPosts: function fetchPosts(page_url) {
       var _this = this;
 
-      axios.get('api/posts').then(function (response) {
+      console.log(page_url);
+      var vm = this;
+      page_url = page_url || '/api/posts';
+      axios.get(page_url).then(function (response) {
         _this.posts = JSON.parse(JSON.stringify(response.data.data));
-        console.log(JSON.parse(JSON.stringify(response.data.data)));
-      })["catch"](function (errors) {
-        if (errors.response.status === 405) {
+        console.log(JSON.parse(JSON.stringify(response.data)));
+        vm.makePagination(response.data.meta, response.data.links);
+      })["catch"](function (error) {
+        if (error) {
           _this.errored = true;
         }
       })["finally"](function () {
         return _this.loading = false;
       });
+    },
+    // Function to delete posts
+    deletePost: function deletePost(id) {
+      var _this2 = this;
+
+      if (confirm("Are you sure?")) {
+        axios["delete"]("/api/post/" + id).then(function (response) {
+          _this2.fetchPosts();
+
+          alert("Your post has been deleted");
+        })["catch"](function (error) {
+          if (error) {
+            alert("Cannot delete at this time. Please try again");
+          }
+        });
+      }
+    },
+    // Function for pagination
+    makePagination: function makePagination(meta, links) {
+      // Pagination object
+      this.pagination = {
+        current_page: meta.current_page,
+        last_page: meta.last_page,
+        next_page_url: links.next,
+        prev_page_url: links.prev
+      };
     },
     // Function for returning pictures
     imgUrl: function imgUrl(image) {
@@ -2041,16 +2122,16 @@ __webpack_require__.r(__webpack_exports__);
     },
     //Function for dynamically changing the category types
     categoryClick: function categoryClick(value) {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get('api/posts/' + value).then(function (response) {
-        _this2.posts = JSON.parse(JSON.stringify(response.data.data));
+        _this3.posts = JSON.parse(JSON.stringify(response.data.data));
       })["catch"](function (errors) {
         if (errors.response.status === 405) {
-          _this2.errored = true;
+          _this3.errored = true;
         }
       })["finally"](function () {
-        return _this2.loading = false;
+        return _this3.loading = false;
       });
     }
   },
@@ -37505,6 +37586,75 @@ var render = function() {
         _vm._m(1)
       ]),
       _vm._v(" "),
+      _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
+        _c(
+          "ul",
+          { staticClass: "pagination", staticStyle: { "margin-left": "40%" } },
+          [
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: [{ disabled: !_vm.pagination.prev_page_url }]
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.fetchPosts(_vm.pagination.prev_page_url)
+                      }
+                    }
+                  },
+                  [_vm._v("Previous")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("li", { staticClass: "page-item disabled text-dark" }, [
+              _c(
+                "a",
+                { staticClass: "page-link limeGreenk", attrs: { href: "#" } },
+                [
+                  _vm._v(
+                    "Page:\n                                 " +
+                      _vm._s(_vm.pagination.current_page) +
+                      " of " +
+                      _vm._s(_vm.pagination.last_page)
+                  )
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: [{ disabled: !_vm.pagination.next_page_url }]
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.fetchPosts(_vm.pagination.next_page_url)
+                      }
+                    }
+                  },
+                  [_vm._v("Next")]
+                )
+              ]
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
       _vm.errored
         ? _c("section", [
             _c("h1", { staticClass: "text-center" }, [
@@ -37549,8 +37699,54 @@ var render = function() {
                             _vm._v(
                               "\n                                     " +
                                 _vm._s(post.post_user_name) +
-                                "\n                                 "
-                            )
+                                "\n\n                                     "
+                            ),
+                            _vm._v(" "),
+                            post.user_id == _vm.userLoginId
+                              ? _c("span", [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticStyle: {
+                                        float: "right",
+                                        "margin-right": "20px"
+                                      },
+                                      attrs: { id: "postDelete", href: "#" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.deletePost(post.id)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "svg",
+                                        {
+                                          staticClass:
+                                            "bi bi-trash-fill text-danger",
+                                          attrs: {
+                                            width: "1.5em",
+                                            height: "1.5em",
+                                            viewBox: "0 0 16 16",
+                                            fill: "currentColor",
+                                            xmlns: "http://www.w3.org/2000/svg"
+                                          }
+                                        },
+                                        [
+                                          _c("path", {
+                                            attrs: {
+                                              "fill-rule": "evenodd",
+                                              d:
+                                                "M2.5 1a1 1 0 00-1 1v1a1 1 0 001 1H3v9a2 2 0 002 2h6a2 2 0 002-2V4h.5a1 1 0 001-1V2a1 1 0 00-1-1H10a1 1 0 00-1-1H7a1 1 0 00-1 1H2.5zm3 4a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7a.5.5 0 01.5-.5zM8 5a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7A.5.5 0 018 5zm3 .5a.5.5 0 00-1 0v7a.5.5 0 001 0v-7z",
+                                              "clip-rule": "evenodd"
+                                            }
+                                          })
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ])
+                              : _vm._e()
                           ]),
                           _vm._v(" "),
                           _c(
@@ -37568,12 +37764,48 @@ var render = function() {
                                 },
                                 [
                                   _c("a", { attrs: { href: "" } }, [
-                                    _vm._v(" " + _vm._s(post.post_title) + " ")
+                                    _vm._v(
+                                      " " +
+                                        _vm._s(
+                                          _vm._f("truncate")(post.post_title)
+                                        ) +
+                                        " "
+                                    )
                                   ])
                                 ]
                               ),
                               _vm._v(" "),
-                              _vm._m(2, true)
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "col-md-10",
+                                  staticStyle: { color: "grey" }
+                                },
+                                [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "btn btn-success btn-fill",
+                                      attrs: { href: "" }
+                                    },
+                                    [_vm._v("Comment")]
+                                  ),
+                                  _vm._v("   Comments: "),
+                                  _c("span", [
+                                    _vm._v(
+                                      " " + _vm._s(post.post_comment_count)
+                                    )
+                                  ]),
+                                  _vm._v("   Posted: "),
+                                  _c("span", [
+                                    _vm._v(
+                                      _vm._s(
+                                        _vm._f("dateFormat")(post.created_at)
+                                      )
+                                    )
+                                  ])
+                                ]
+                              )
                             ]
                           )
                         ]
@@ -37582,7 +37814,61 @@ var render = function() {
                   })
             ],
             2
-          )
+          ),
+      _vm._v(" "),
+      _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
+        _c(
+          "ul",
+          { staticClass: "pagination", staticStyle: { "margin-left": "40%" } },
+          [
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: [{ disabled: !_vm.pagination.prev_page_url }]
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.fetchPosts(_vm.pagination.prev_page_url)
+                      }
+                    }
+                  },
+                  [_vm._v("Previous")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: [{ disabled: !_vm.pagination.next_page_url }]
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.fetchPosts(_vm.pagination.next_page_url)
+                      }
+                    }
+                  },
+                  [_vm._v("Next")]
+                )
+              ]
+            )
+          ]
+        )
+      ])
     ])
   ])
 }
@@ -37618,26 +37904,6 @@ var staticRenderFns = [
         attrs: { href: "discussionBoard/create" }
       },
       [_vm._v("Add Post "), _c("i", { staticClass: "fa fa-plus" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "col-md-10", staticStyle: { color: "grey" } },
-      [
-        _c(
-          "a",
-          { staticClass: "btn btn-success btn-fill", attrs: { href: "" } },
-          [_vm._v("Comment")]
-        ),
-        _vm._v("   Comments: "),
-        _c("span"),
-        _vm._v("   Posted: "),
-        _c("span")
-      ]
     )
   }
 ]

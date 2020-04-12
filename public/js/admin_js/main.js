@@ -245,3 +245,8 @@ var mapData = {
          showSwal();
     });
 
+   /************** Show modal *****************/
+   $("#postDelete").on('click', function(){
+       console.log("Delete clicked!");
+   });
+

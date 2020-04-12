@@ -28,6 +28,24 @@
                     <a href="discussionBoard/create" class="btn btn-primary btn-fill" style="float: right;">Add Post <i class="fa fa-plus"></i></a>
                   </div>
 
+                     <!--  Pagination  -->
+                     <nav aria-label="Page navigation example">
+                         <ul class="pagination" style="margin-left: 40%">
+                             <!-- Disabling page when there is no pagination -->
+                             <li v-bind:class="[{disabled: !pagination.prev_page_url}]" class="page-item">
+                                 <a class="page-link" href="#" @click="fetchPosts(pagination.prev_page_url)">Previous</a>
+                             </li>
+
+                             <li class="page-item disabled text-dark"><a class="page-link limeGreenk" href="#">Page:
+                                 {{ pagination.current_page }} of {{ pagination.last_page }}</a>
+                             </li>
+
+                             <li v-bind:class="[{disabled: !pagination.next_page_url}]" class="page-item">
+                                 <a class="page-link" href="#" @click="fetchPosts(pagination.next_page_url)">Next</a>
+                             </li>
+                         </ul>
+                     </nav>
+
                      <section v-if="errored">
                          <h1 class="text-center">Unable to retrieve this information at the moment, please try again later.</h1>
                      </section>
@@ -46,19 +64,39 @@
                                  <div class="dicussionCardHeader">
                                      <img :src="imgUrl(post.post_user_picture)" style="width:40px; border-radius: 50%;">
                                      {{ post.post_user_name }}
+
+                                     <!-- Users can delete thier own posts -->
+                                     <span v-if="post.user_id  == userLoginId">
+                                         <a id="postDelete" href="#" style="float: right; margin-right: 20px;" @click="deletePost(post.id)">
+                                             <svg class="bi bi-trash-fill text-danger" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                 <path fill-rule="evenodd" d="M2.5 1a1 1 0 00-1 1v1a1 1 0 001 1H3v9a2 2 0 002 2h6a2 2 0 002-2V4h.5a1 1 0 001-1V2a1 1 0 00-1-1H10a1 1 0 00-1-1H7a1 1 0 00-1 1H2.5zm3 4a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7a.5.5 0 01.5-.5zM8 5a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7A.5.5 0 018 5zm3 .5a.5.5 0 00-1 0v7a.5.5 0 001 0v-7z" clip-rule="evenodd"/>
+                                             </svg>
+                                         </a>
+                                     </span>
                                  </div>
 
                                  <div class="container" style="padding-bottom: 10px;">
-                                     <div class="dicussionCardTitle" style="margin-bottom: 3%;"> <a href=""> {{ post.post_title }} </a> </div>
+                                     <div class="dicussionCardTitle" style="margin-bottom: 3%;"> <a href=""> {{ post.post_title | truncate }} </a> </div>
 
                                      <div class="col-md-10" style="color: grey;">
-                                         <a href="" class="btn btn-success btn-fill">Comment</a> &nbsp; Comments: <span></span> &nbsp; Posted: <span></span>
+                                         <a href="" class="btn btn-success btn-fill">Comment</a> &nbsp; Comments: <span> {{ post.post_comment_count }}</span> &nbsp; Posted: <span>{{ post.created_at | dateFormat }}</span>
                                      </div>
                                  </div>
                              </div>
                          </div>
-
                      </section>
+
+                    <!--  Pagination  -->
+                     <nav aria-label="Page navigation example">
+                         <ul class="pagination" style="margin-left: 40%">
+                             <li v-bind:class="[{disabled: !pagination.prev_page_url}]" class="page-item">
+                                 <a class="page-link" href="#" @click="fetchPosts(pagination.prev_page_url)">Previous</a>
+                             </li>
+                             <li v-bind:class="[{disabled: !pagination.next_page_url}]" class="page-item">
+                                 <a class="page-link" href="#" @click="fetchPosts(pagination.next_page_url)">Next</a>
+                             </li>
+                         </ul>
+                     </nav>
              </div>
           </div>
 
@@ -67,6 +105,7 @@
 
 <script>
   export default {
+      props: ['userLoginId'],
       data: function () {
           return {
               posts: [],
@@ -109,20 +148,64 @@
           this.fetchPosts();
         },
 
+      filters: {
+          // This function truncate string of more than 40 characters
+          truncate: function (value) {
+              var dots = "...";
+              return value.length > 40 ? value.slice(0, 40) + dots : value;
+          },
+
+          //This function creates a date format
+          dateFormat: function (value) {
+              var dateData = new Date(value);
+              return dateData.getMonth() + "/" + dateData.getDay() + "/" + dateData.getFullYear()
+          }
+      },
+
       methods: {
           //Function to make get requests for all posts
-        fetchPosts() {
-            axios.get('api/posts')
+        fetchPosts(page_url) {
+            console.log(page_url);
+            let vm = this;
+            page_url = page_url || '/api/posts';
+            axios.get(page_url)
                 .then(response=>{
                 this.posts = JSON.parse(JSON.stringify(response.data.data));
-                console.log(JSON.parse(JSON.stringify(response.data.data)));
-            }).catch(errors => {
-                    if (errors.response.status === 405) {
+                console.log(JSON.parse(JSON.stringify(response.data)));
+                vm.makePagination(response.data.meta, response.data.links);
+            }).catch(error => {
+                    if (error) {
                         this.errored = true;
                     }
                 })
             .finally(() => this.loading = false)
         },
+
+          // Function to delete posts
+          deletePost(id){
+            if(confirm("Are you sure?")){
+                axios.delete("/api/post/" + id)
+                    .then(response=>{
+                       this.fetchPosts();
+                       alert("Your post has been deleted");
+                    }).catch(error => {
+                    if (error) {
+                        alert("Cannot delete at this time. Please try again");
+                    }
+                })
+            }
+          },
+
+          // Function for pagination
+          makePagination(meta, links) {
+            // Pagination object
+              this.pagination = {
+                current_page: meta.current_page,
+                last_page: meta.last_page,
+                next_page_url: links.next,
+                prev_page_url: links.prev
+            };
+          },
 
           // Function for returning pictures
           imgUrl(image){

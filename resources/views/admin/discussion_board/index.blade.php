@@ -4,7 +4,7 @@
 <div id="app">
 <div class="main-content">
 
-<discussion-button></discussion-button>
+<discussion-button user-login-id="{{ auth()->user()->id}}"></discussion-button>
 
  </div>
 </div>
