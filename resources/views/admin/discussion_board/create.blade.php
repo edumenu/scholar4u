@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="main-content">
-        <a type="button" href="/discussionBoard" class="btn btn-success btn-fill btn-lg" style="margin-bottom: 4px;">
+        <a type="button" href="/discussionBoard" class="btn btn-success btn-fill" style="margin-bottom: 4px;">
           <i class="pe-7s-left-arrow" style="font-size: 1em;"></i>  Back
         </a>
 
            @if(session()->has('status'))
-  
+
             <script>
              let promise = new Promise(function(resolve, reject){
                 setTimeout(() => resolve('{{ session()->get('status') }}'), 1000);

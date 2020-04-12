@@ -25,8 +25,8 @@ Route::get('posts/loans','PostApiController@loans');
 Route::get('posts/scholarships','PostApiController@scholarships');
 //Loan Posts
 Route::get('posts/others','PostApiController@others');
-//Single Post
-Route::get('post/{id}','PostApiController@show');
+//Search Post
+Route::get('posts/search/{data}','PostApiController@searchPost');
 //Store Post
 Route::post('post','PostApiController@store');
 //Scholarship Posts

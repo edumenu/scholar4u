@@ -98,6 +98,14 @@ class PostApiController extends Controller
         }
     }
 
+    public function searchPost($data){
+        $searchPost = Post::where('post_title','like', "%$data%")
+                      ->orWhere('post_user_name','like', "%$data%")
+                      ->get();
+
+        return PostResource::collection($searchPost);
+    }
+
     public function loans()
     {
         //Get one post

@@ -21,6 +21,15 @@ class PostController extends Controller
     	return view('admin.discussion_board.index', compact('user'));
     }
 
+    public function show(Post $post)
+    {
+        // Finding all comments for post
+        $postComments = Comment::where('comment_post_id',$post->id)->latest()->paginate(3);
+
+        //Return collection of posts;
+        return view('admin.discussion_board.show', compact('post', 'postComments'));
+    }
+
     public function create(){
     	return view('admin.discussion_board.create');
     }

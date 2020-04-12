@@ -2,19 +2,20 @@
 
          <div class="container-fluid">
 
-             <div class="col-sm-2">
+             <div class="col-sm-2" style="border-style: solid;border-color: #efeff2;border-radius: 25px;">
                <h3>Search</h3>
-
-                      <div class="input-group">
-                          <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                          <input type="text" value="" class="form-control" placeholder="Search...">
-                      </div>
-
+                 <form @submit.prevent="onSubmit">
+                     <div class="input-group">
+                         <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                         <input type="text" v-model="searchValue" class="form-control" placeholder="Search..." >
+                     </div>
+                     <input class="btn btn-success btn-fill" type="submit" value="Submit" style="margin-top: 4px;margin-bottom: 6px;">
+                 </form>
              </div>
 
-             <div class="col-md-10">
+             <div class="col-md-10" style="border-style: solid;border-color: #efeff2;border-radius: 25px;">
 
-                  <h3>Category</h3>
+                  <h3>Select a Category</h3>
 
                   <div class="row">
 
@@ -47,7 +48,7 @@
                      </nav>
 
                      <section v-if="errored">
-                         <h1 class="text-center">Unable to retrieve this information at the moment, please try again later.</h1>
+                         <h1 class="text-center">There are no posts.</h1>
                      </section>
 
                      <section v-else>
@@ -76,10 +77,10 @@
                                  </div>
 
                                  <div class="container" style="padding-bottom: 10px;">
-                                     <div class="dicussionCardTitle" style="margin-bottom: 3%;"> <a href=""> {{ post.post_title | truncate }} </a> </div>
+                                     <div class="dicussionCardTitle" style="margin-bottom: 3%;"> <a :href="/discussionBoard/ + post.id"> {{ post.post_title | truncate }} </a> </div>
 
                                      <div class="col-md-10" style="color: grey;">
-                                         <a href="" class="btn btn-success btn-fill">Comment</a> &nbsp; Comments: <span> {{ post.post_comment_count }}</span> &nbsp; Posted: <span>{{ post.created_at | dateFormat }}</span>
+                                         <a :href="/discussionBoard/ + post.id" class="btn btn-success btn-fill">Comment</a> &nbsp; Comments: <span> {{ post.post_comment_count }}</span> &nbsp; Posted: <span>{{ post.created_at | dateFormat }}</span>
                                      </div>
                                  </div>
                              </div>
@@ -125,7 +126,8 @@
                 post_view_count: '',
             },
               post_id: '',
-              pagination: {}
+              pagination: {},
+              searchValue: null
           }
         },
 
@@ -171,7 +173,7 @@
             axios.get(page_url)
                 .then(response=>{
                 this.posts = JSON.parse(JSON.stringify(response.data.data));
-                console.log(JSON.parse(JSON.stringify(response.data)));
+               // console.log(JSON.parse(JSON.stringify(response.data)));
                 vm.makePagination(response.data.meta, response.data.links);
             }).catch(error => {
                     if (error) {
@@ -194,6 +196,36 @@
                     }
                 })
             }
+          },
+
+          // Function for showing one post
+          showPost(id){
+              axios.get("/api/post/" + id)
+                  .then(response=>{
+                      console.log(JSON.parse(JSON.stringify(response.data)));
+                  }).catch(error => {
+                  if (error) {
+                      console.log("There was an error fetching this post. Try again");
+                  }
+              })
+          },
+
+          // Function for search post
+          onSubmit(){
+              axios.get("/api/posts/search/" + this.searchValue)
+                  .then(response=>{
+                      this.posts = JSON.parse(JSON.stringify(response.data.data));
+                      if(this.posts === undefined || this.posts.length == 0){
+                          this.errored = true;
+                      }
+                  }).catch(error => {
+                  if (error) {
+                      this.errored = true;
+                      console.log("No data");
+                  }
+              });
+              // Setting searchValue to null
+              this.searchValue = null
           },
 
           // Function for pagination
