@@ -29,8 +29,8 @@ Route::get('/messages', 'MessageController@index')->name('message.index');
 
 Route::get('/discussionBoard', 'PostController@index')->name('post.index');
 Route::get('/discussionBoard/create', 'PostController@create')->name('post.create');
-Route::get('/discussionBoard/loan', 'PostController@showLoan')->name('post.showLoan');
-Route::get('/discussionBoard/all', 'PostController@showAll')->name('post.showAll');
+//Route::get('/discussionBoard/loan', 'PostController@showLoan')->name('post.showLoan');
+//Route::get('/discussionBoard/all', 'PostController@showAll')->name('post.showAll');
 Route::patch('/discussionBoard', 'PostController@store')->name('post.store');
 Route::get('/discussionBoard/{post}', 'PostController@show')->name('post.show');
 
