@@ -1,18 +1,11 @@
 @extends('layouts.admin_layout')
 
 @section('content')
-<div class="main-content">
-     <div class="container-fluid">
-         <div class="row">
-             <div class="col-md-10 col-md-offset-1">
-
-                 <div class="card card-calendar">
-                     <div class="content">
-                         <div id="fullCalendar"></div>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </div>
- </div>
+<div id="app">
+    <div class="main-content">
+        <calendar-button user-login-id="{{ auth()->user()->id}}"></calendar-button>
+    </div>
+</div>
+<!-- Vue app -->
+<script src="{{ asset('js/app.js') }}" defer></script>
 @endsection

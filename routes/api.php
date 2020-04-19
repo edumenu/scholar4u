@@ -31,8 +31,11 @@ Route::get('posts/search/{data}','PostApiController@searchPost');
 Route::post('post','PostApiController@store');
 //Scholarship Posts
 Route::delete('post/{id}','PostApiController@destroy');
-//Other Posts
-//Route::get('posts/others','PostController@showOthers');
-//Delete Post
-//Route::delete('post','PostController@deletePost');
+//Create a new event
+Route::post('calendar','CalendarApiController@store')->name('calendar.store');
+//List of all events
+Route::get('calendar/{id}','CalendarApiController@index')->name('calendar.index');
+//Delete an event
+Route::delete('calendar/{id}','CalendarApiController@destroy')->name('calendar.destroy');
+
 

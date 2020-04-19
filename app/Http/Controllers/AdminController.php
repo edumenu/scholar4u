@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Post;
+use App\Calendar;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -12,13 +14,12 @@ class AdminController extends Controller
       $this->middleware('auth');
   }
 
-  public function index(User $user)
+  public function index()
   {
-    return view('admin.frontPage');
-  }
+      $usersCount = User::all()->count();
+      $postsCount = Post::all()->count();
+      $calendarEvents = Calendar::where('user_id',auth()->user()->id)->count();
 
-  public function scholarshipTable(User $user)
-  {
-    return view('admin.scholarshipTable');
+    return view('admin.frontPage', compact('usersCount', 'postsCount', 'calendarEvents'));
   }
 }

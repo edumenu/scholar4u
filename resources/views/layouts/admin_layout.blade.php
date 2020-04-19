@@ -46,8 +46,8 @@
           <div class="sidebar" data-color="purple" data-image="/images/admin_images/full-screen-image-2.jpg">
 
               <div class="logo animated fadeInDown">
-                  <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-                      Ct
+                  <a href="#" class="simple-text logo-mini">
+
                   </a>
 
             			<a href="/" class="simple-text logo-normal">
@@ -172,7 +172,7 @@
       						<li class="dropdown ">
       							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
       								<i class="fa fa-bell-o"></i>
-      								<span class="notification">5</span>
+      								<span class="notification">1</span>
       								<p class="hidden-md hidden-lg">
       									Notifications
       									<b class="caret"></b>
@@ -180,8 +180,6 @@
       							</a>
       							<ul class="dropdown-menu">
       								<li><a href="#">Notification 1</a></li>
-      								<li><a href="#">Notification 2</a></li>
-      								<li><a href="#">Notification 3</a></li>
       							</ul>
       						</li>
 
@@ -195,7 +193,7 @@
       							</a>
       							<ul class="dropdown-menu dropdown-with-icons">
       								<li>
-      									<a href="#">
+      									<a href="/messages">
       										<i class="pe-7s-mail"></i> Messages
       									</a>
       								</li>

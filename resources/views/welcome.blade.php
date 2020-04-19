@@ -12,8 +12,8 @@
                       <h3>Over 24000 scholarships at your finger tips</h3>
                       <div>
                         @guest
-                        <a class="searchButton" href="{{ route('register') }}">
-                          Register now!
+                        <a class="searchButton" href="{{ route('login') }}">
+                          Login
                         </a>
                         @endguest
                       </div>
@@ -62,10 +62,10 @@
                                   <div class="icon"><i class="flaticon-browser"></i></div>
                                   <div class="features_info">
                                       <h4>
-                                          Free Domain for 1st Year
+                                          24,000 Scholarships available to you
                                       </h4>
-                                      <p>Our set he for firmament morning sixth subdue darkness creeping gathered
-                                          divide our let god moving.</p>
+                                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                          tempor incididunt ut labore et dolore magna aliqua</p>
                                   </div>
                               </div>
                           </div>
@@ -74,10 +74,10 @@
                                   <div class="icon blue"><i class="flaticon-security"></i></div>
                                   <div class="features_info">
                                       <h4>
-                                          Free SSL Certificate
+                                          Discussion Board available to all users
                                       </h4>
-                                      <p>Our set he for firmament morning sixth subdue darkness creeping gathered
-                                          divide our let god moving.</p>
+                                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                          tempor incididunt ut labore et dolore magna aliqua</p>
                                   </div>
                               </div>
                           </div>
@@ -86,10 +86,10 @@
                                   <div class="icon pink"><i class="flaticon-like"></i></div>
                                   <div class="features_info">
                                       <h4>
-                                          30-Day Money-Back Guarantee
+                                          Interactive calendar available to users
                                       </h4>
-                                      <p>Our set he for firmament morning sixth subdue darkness creeping gathered
-                                          divide our let god moving.</p>
+                                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                          tempor incididunt ut labore et dolore magna aliqua</p>
                                   </div>
                               </div>
                           </div>
@@ -98,10 +98,10 @@
                                   <div class="icon yellow"><i class="flaticon-lock"></i></div>
                                   <div class="features_info">
                                       <h4>
-                                          Spam Protection
+                                          Personal Inbox available to users
                                       </h4>
-                                      <p>Our set he for firmament morning sixth subdue darkness creeping gathered
-                                          divide our let god moving.</p>
+                                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                          incididunt ut labore et dolore magna aliqua</p>
                                   </div>
                               </div>
                           </div>
@@ -114,10 +114,10 @@
                                   <div class="icon"><i class="flaticon-browser"></i></div>
                                   <div class="features_info">
                                       <h4>
-                                          Free Domain for 1st Year
+                                          Personalize scholarship application service
                                       </h4>
-                                      <p>Our set he for firmament morning sixth subdue darkness creeping gathered
-                                          divide our let god moving.</p>
+                                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                          tempor incididunt ut labore et dolore magna aliqua</p>
                                   </div>
                               </div>
                           </div>
@@ -126,38 +126,13 @@
                                   <div class="icon blue"><i class="flaticon-security"></i></div>
                                   <div class="features_info">
                                       <h4>
-                                          Free SSL Certificate
+                                          Advanced search for scholarships
                                       </h4>
-                                      <p>Our set he for firmament morning sixth subdue darkness creeping gathered
-                                          divide our let god moving.</p>
+                                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                          tempor incididunt ut labore et dolore magna aliqua</p>
                                   </div>
                               </div>
                           </div>
-                          <div class="col-xl-6">
-                              <div class="single_features">
-                                  <div class="icon pink"><i class="flaticon-like"></i></div>
-                                  <div class="features_info">
-                                      <h4>
-                                          30-Day Money-Back Guarantee
-                                      </h4>
-                                      <p>Our set he for firmament morning sixth subdue darkness creeping gathered
-                                          divide our let god moving.</p>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-xl-6">
-                              <div class="single_features">
-                                  <div class="icon yellow"><i class="flaticon-lock"></i></div>
-                                  <div class="features_info">
-                                      <h4>
-                                          Spam Protection
-                                      </h4>
-                                      <p>Our set he for firmament morning sixth subdue darkness creeping gathered
-                                          divide our let god moving.</p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
                   </div>
               </div>
           </div>
@@ -179,14 +154,12 @@
                  <div class="middle_content">
                      <div class="list">
                          <ul>
-                             <li>1 Site</li>
-                             <li>100k Visits Per Month</li>
-                             <li>1GB Backups</li>
-                             <li>Free SSL Certificate</li>
-                             <li>Quick support</li>
+                             <li>Scholarship Search</li>
+                             <li>Access to calendar</li>
+                             <li>Access to discussion board</li>
                          </ul>
                      </div>
-                     <p class="prise">Start from <span>$2.5/m</span></p>
+                     <p class="prise">Start from <span>$5</span></p>
                      <div class="start_btn text-center">
                          <a class="boxed_btn_green" href="#">
                              Start Now
@@ -203,14 +176,12 @@
                  <div class="middle_content">
                      <div class="list">
                          <ul>
-                             <li>1 Site</li>
-                             <li>100k Visits Per Month</li>
-                             <li>1GB Backups</li>
-                             <li>Free SSL Certificate</li>
-                             <li>Quick support</li>
+                             <li>Access to personal emails</li>
+                             <li>More than 10 posts per month</li>
+                             <li>Apply for 5 scholarships per day</li>
                          </ul>
                      </div>
-                     <p class="prise">Start from <span>$2.5/m</span></p>
+                     <p class="prise">Start from <span>$10</span></p>
                      <div class="start_btn text-center">
                          <a class="boxed_btn_green" href="#">
                              Start Now
@@ -227,14 +198,12 @@
                  <div class="middle_content">
                      <div class="list">
                          <ul>
-                             <li>1 Site</li>
-                             <li>100k Visits Per Month</li>
-                             <li>1GB Backups</li>
-                             <li>Free SSL Certificate</li>
-                             <li>Quick support</li>
+                             <li>Step by step process for scholarship application</li>
+                             <li>Unlimited calendar events</li>
+                             <li>Unlimited discussion board posts</li>
                          </ul>
                      </div>
-                     <p class="prise">Start from <span>$2.5/m</span></p>
+                     <p class="prise">Start from <span>$20</span></p>
                      <div class="start_btn text-center">
                          <a class="boxed_btn_green" href="#">
                              Start Now
@@ -254,7 +223,7 @@
         <div class="row">
             <div class="col-xl-4 col-md-4">
                 <div class="single_box">
-                    <h3>278390</h3>
+                    <h3>24,000</h3>
                     <p>Number of scholarships</p>
                 </div>
             </div>
@@ -266,7 +235,7 @@
             </div>
             <div class="col-xl-4 col-md-4">
                 <div class="single_box">
-                    <h3>563278</h3>
+                    <h3>580,000</h3>
                     <p>Students who need scholarships</p>
                 </div>
             </div>
@@ -289,15 +258,15 @@
                             <h5 class="mb-0">
                                 <button class="btn btn-link collapsed" data-toggle="collapse"
                                     data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    <i class="flaticon-info"></i> Is WordPress hosting worth it?
+                                    <i class="flaticon-info"></i> How often do you update scholarship list?
                                 </button>
                             </h5>
                         </div>
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                             data-parent="#accordion">
                             <div class="card-body">
-                                Our set he for firmament morning sixth subdue darkness creeping gathered divide our
-                                let god moving. Moving in fourth air night bring upon
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua
                             </div>
                         </div>
                     </div>
@@ -306,16 +275,15 @@
                             <h5 class="mb-0">
                                 <button class="btn btn-link collapsed" data-toggle="collapse"
                                     data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                    <i class="flaticon-info"></i> What are the advantages <span>of WordPress hosting
-                                        over shared?</span>
+                                    <i class="flaticon-info"></i> How does the premium service work?
                                 </button>
                             </h5>
                         </div>
                         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
                             style="">
                             <div class="card-body">
-                                Our set he for firmament morning sixth subdue darkness creeping gathered divide our
-                                let god moving. Moving in fourth air night bring upon
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua
                             </div>
                         </div>
                     </div>
@@ -325,7 +293,8 @@
                                 <button class="btn btn-link collapsed" data-toggle="collapse"
                                     data-target="#collapseThree" aria-expanded="false"
                                     aria-controls="collapseThree">
-                                    <i class="flaticon-info"></i> Will you transfer my site?
+                                    <i class="flaticon-info"></i> Will I get a refund after subscribing for premium
+                                    service?
                                 </button>
                             </h5>
                         </div>
@@ -342,14 +311,14 @@
                             <h5 class="mb-0">
                                 <button class="btn btn-link collapsed" data-toggle="collapse"
                                     data-target="#collapse_4" aria-expanded="false" aria-controls="collapse_4">
-                                    <i class="flaticon-info"></i> Why should I host with Hostza?
+                                    <i class="flaticon-info"></i> What do I do to reset my password?
                                 </button>
                             </h5>
                         </div>
                         <div id="collapse_4" class="collapse" aria-labelledby="heading_4" data-parent="#accordion">
                             <div class="card-body">
-                                Our set he for firmament morning sixth subdue darkness creeping gathered divide our
-                                let god moving. Moving in fourth air night bring upon
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua
                             </div>
                         </div>
                     </div>
@@ -358,15 +327,14 @@
                             <h5 class="mb-0">
                                 <button class="btn btn-link collapsed" data-toggle="collapse"
                                     data-target="#collapse_5" aria-expanded="false" aria-controls="collapse_5">
-                                    <i class="flaticon-info"></i> How do I get started <span>with Shared
-                                        Hosting?</span>
+                                    <i class="flaticon-info"></i> What if my profile doesn't match any scholarship?
                                 </button>
                             </h5>
                         </div>
                         <div id="collapse_5" class="collapse" aria-labelledby="heading_5" data-parent="#accordion">
                             <div class="card-body">
-                                Our set he for firmament morning sixth subdue darkness creeping gathered divide our
-                                let god moving. Moving in fourth air night bring upon
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua
                             </div>
                         </div>
                     </div>

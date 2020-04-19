@@ -42,9 +42,13 @@ class PostController extends Controller
             'post_category' => 'nullable'
     	]);
 
-        // Obtaining the user ID
+        // Obtaining the user image
+        $userId = auth()->user()->name;
+
+        // Obtaining the user image
         $tempImage = auth()->user()->profile->image;
 
+        $data['post_user_name'] = $userId;
         $data['post_user_picture'] = $tempImage;
 
     	auth()->user()->posts()->create($data);

@@ -4,7 +4,7 @@
 <div class="main-content">
 
   @if(session()->has('status'))
-  
+
   <script>
      let promise = new Promise(function(resolve, reject){
         setTimeout(() => resolve('{{ session()->get('status') }}'), 1000);
@@ -30,15 +30,15 @@
             <form action="/profile/{{ $user->id }}" enctype="multipart/form-data" method="post">
               @csrf
               @method('PATCH')  <!-- This converts the method to Patch method -->
-              
+
               <div class="row">
 
                   <img src="{{ $user->profile->profileImage() }}" class="imageSize" alt="profile image" style="margin-left: 8px;">
-                
+
               </div>
               <div class="row">
                 <div class="col-md-4" style="margin-top: 15px;">
-                      <input type="file" class="form-control-file" id="image" name="image"></br>  
+                      <input type="file" class="form-control-file" id="image" name="image"></br>
                     @if ($errors->has('image'))
                         <strong class="text-danger">{{ $errors->first('image') }}</strong>
                     @endif
@@ -178,7 +178,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <h3>Ethnicity</h3>
-                    <input id="ethnicity" type="text" name="ethnicity" class="form-control" placeholder="Ethnicity" value="">
+                    <input id="ethnicity" type="text" name="ethnicity" class="form-control" placeholder="Ethnicity" value="{{ old('disabilities') ?? $user->profile->ethnicity }}">
                   </div>
                 </div>
               </div>
@@ -187,7 +187,7 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <h3>Sports</h3>
-                    <input id="sports" type="text" name="sports" class="form-control" placeholder="Sport activity">
+                    <input id="sports" type="text" name="sports" class="form-control" placeholder="Sport activity" value="{{ old('disabilities') ?? $user->profile->sports }}">
                   </div>
                 </div>
               </div>
@@ -196,7 +196,7 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <h3>Fraternity</h3>
-                    <input id="fraternity" type="text" name="fraternity" class="form-control" placeholder="Ethnicity" value="">
+                    <input id="fraternity" type="text" name="fraternity" class="form-control" placeholder="Ethnicity" value="{{ old('disabilities') ?? $user->profile->fraternity }}">
                   </div>
                 </div>
               </div>

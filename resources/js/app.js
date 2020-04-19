@@ -20,6 +20,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('discussion-button', require('./components/Discussion.vue').default);
+Vue.component('calendar-button', require('./components/Calendar.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

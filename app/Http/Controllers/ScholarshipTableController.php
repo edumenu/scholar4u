@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class CalendarController extends Controller
+use Illuminate\Http\Request;
+
+class ScholarshipTableController extends Controller
 {
     public function __construct()
     {
@@ -15,7 +14,6 @@ class CalendarController extends Controller
     public function index()
     {
         // Return the calendar view
-        return view('admin.calendar');
+        return view('admin.scholarshipTable');
     }
-
 }

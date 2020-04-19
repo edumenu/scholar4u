@@ -34,15 +34,15 @@
                          <ul class="pagination" style="margin-left: 40%">
                              <!-- Disabling page when there is no pagination -->
                              <li v-bind:class="[{disabled: !pagination.prev_page_url}]" class="page-item">
-                                 <a class="page-link" href="#" @click="fetchPosts(pagination.prev_page_url)">Previous</a>
+                                 <a class="page-link" href="#" @click="fetchPosts(pagination.prev_page_url)" style="border-radius: 0;">Previous</a>
                              </li>
 
-                             <li class="page-item disabled text-dark"><a class="page-link limeGreenk" href="#">Page:
+                             <li class="page-item disabled text-dark"><a class="page-link limeGreenk" href="#" style="border-radius: 0;">Page:
                                  {{ pagination.current_page }} of {{ pagination.last_page }}</a>
                              </li>
 
                              <li v-bind:class="[{disabled: !pagination.next_page_url}]" class="page-item">
-                                 <a class="page-link" href="#" @click="fetchPosts(pagination.next_page_url)">Next</a>
+                                 <a class="page-link" href="#" @click="fetchPosts(pagination.next_page_url)" style="border-radius: 0;">Next</a>
                              </li>
                          </ul>
                      </nav>
@@ -106,7 +106,7 @@
 
 <script>
   export default {
-      props: ['userLoginId'],
+      props: ['userLoginId'],   // Obtain user ID
       data: function () {
           return {
               posts: [],
@@ -136,11 +136,11 @@
           scholarshipCheck(){
               return "scholarshipCardBorder";
           },
-          //Function adds scholarshipCardBorder to the class
+          //Function adds loanCardBorder to the class
           loanCheck(){
               return "loanCardBorder";
           },
-          //Function adds scholarshipCardBorder to the class
+          //Function adds otherCardBorder to the class
           otherCheck(){
               return "otherCardBorder";
           }
@@ -148,6 +148,8 @@
 
       created() {
           this.fetchPosts();
+          //
+          this.discussionPostInfo();
         },
 
       filters: {
@@ -167,13 +169,13 @@
       methods: {
           //Function to make get requests for all posts
         fetchPosts(page_url) {
-            console.log(page_url);
             let vm = this;
+            this.errored = false; // Set back to false
             page_url = page_url || '/api/posts';
+
             axios.get(page_url)
                 .then(response=>{
                 this.posts = JSON.parse(JSON.stringify(response.data.data));
-               // console.log(JSON.parse(JSON.stringify(response.data)));
                 vm.makePagination(response.data.meta, response.data.links);
             }).catch(error => {
                     if (error) {
@@ -185,47 +187,60 @@
 
           // Function to delete posts
           deletePost(id){
-            if(confirm("Are you sure?")){
-                axios.delete("/api/post/" + id)
-                    .then(response=>{
-                       this.fetchPosts();
-                       alert("Your post has been deleted");
-                    }).catch(error => {
-                    if (error) {
-                        alert("Cannot delete at this time. Please try again");
-                    }
-                })
-            }
+              let self = this;
+              // Display date after clicking on it
+              swal({
+                      title: "Are you sure you want to delete this post?",
+                      type: "warning",
+                      showCancelButton: true,
+                      confirmButtonText: 'Yes',
+                      confirmButtonClass: "btn-danger btn-fill",
+                  }).then(function() {
+                     //console.log(id)
+                      // Delete post
+                      axios.delete("/api/post/" + id)
+                          .then(response=>{
+                              self.fetchPosts();
+                          }).catch(error => {
+                          if (error) {
+                              alert("Cannot delete at this time. Please try again");
+                          }
+                      })
+                     }, function(dismiss) {
+
+                        }
+                     );
+
           },
 
           // Function for showing one post
           showPost(id){
               axios.get("/api/post/" + id)
                   .then(response=>{
-                      console.log(JSON.parse(JSON.stringify(response.data)));
                   }).catch(error => {
                   if (error) {
-                      console.log("There was an error fetching this post. Try again");
                   }
               })
           },
 
           // Function for search post
           onSubmit(){
-              axios.get("/api/posts/search/" + this.searchValue)
-                  .then(response=>{
-                      this.posts = JSON.parse(JSON.stringify(response.data.data));
-                      if(this.posts === undefined || this.posts.length == 0){
-                          this.errored = true;
-                      }
-                  }).catch(error => {
-                  if (error) {
-                      this.errored = true;
-                      console.log("No data");
-                  }
-              });
-              // Setting searchValue to null
-              this.searchValue = null
+              this.errored = false; // Set back to false
+            if(this.searchValue != null){
+                axios.get("/api/posts/search/" + this.searchValue)
+                    .then(response=>{
+                        this.posts = JSON.parse(JSON.stringify(response.data.data));
+                        if(this.posts.length === 0){
+                            this.errored = true;
+                        }
+                    }).catch(error => {
+                    if (error) {
+                        this.errored = true;
+                    }
+                }) .finally(() => this.loading = false);
+                // Setting searchValue to null
+                //this.searchValue = null
+            }
           },
 
           // Function for pagination
@@ -251,6 +266,8 @@
 
           //Function for dynamically changing the category types
           categoryClick(value){
+              this.errored = false; // Set back to false
+
               axios.get('api/posts/' + value)
                   .then(response=>{
                       this.posts = JSON.parse(JSON.stringify(response.data.data));
@@ -260,6 +277,17 @@
                   }
               })
                   .finally(() => this.loading = false)
+          },
+
+          discussionPostInfo() {
+              swal({
+                  html: '<h2>List of all Discussion Board posts. <br> Posts are categorized by Scholarship, Loan, Other</h2>',
+                  showCancelButton: false,
+                  confirmButtonText: 'Okay',
+                  confirmButtonClass: "btn btn-success btn-fill",
+              }).then(function() {
+
+              });
           },
       },
 

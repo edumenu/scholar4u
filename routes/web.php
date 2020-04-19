@@ -20,9 +20,12 @@ Route::get('/', function () {
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/adminFrontPage', 'AdminController@index')->name('adminFrontPage.show')->middleware('verified');
-Route::get('/scholarshipTable', 'AdminController@scholarshipTable')->name('scholarshipTable.show');
+
+Route::get('/scholarshipTable', 'ScholarshipTableController@index')->name('scholarshipTable.index');
 
 Route::get('/calendar', 'CalendarController@index')->name('calendar.show');
+
+Route::get('/messages', 'MessageController@index')->name('message.index');
 
 Route::get('/discussionBoard', 'PostController@index')->name('post.index');
 Route::get('/discussionBoard/create', 'PostController@create')->name('post.create');

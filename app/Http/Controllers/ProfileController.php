@@ -16,7 +16,7 @@ class ProfileController extends Controller
   public function edit(User $user)
   {
 
-    $this->authorize('update', $user->profile); //Authorize user to update thier profile
+    $this->authorize('view', $user->profile); //Authorize user to update thier profile
 
     return view('admin.profile', compact('user'));
   }
@@ -45,7 +45,7 @@ class ProfileController extends Controller
     if(!request('military')){
 
       $data['military'] = 'no';
-      
+
     }
 
     if(request('image')){

@@ -18,7 +18,7 @@ class UserController extends Controller
   public function edit(User $user)
   {
 
-    //this->authorize('edit', $user); //Authorize user to view thier profile
+      $this->authorize('view', $user); //Authorize user to update thier profile
 
     return view('admin.user', compact('user'));
   }
@@ -36,15 +36,13 @@ class UserController extends Controller
 
     if($data['password'] == null){
 
-       $data['password'] = $user->password; 
+       $data['password'] = $user->password;
 
     }else{
 
       $data['password'] = Hash::make($data['password']);
 
     }
-
-    //dd($data);
 
     auth()->user()->update($data);
 

@@ -2,11 +2,11 @@
 
 @section('content')
 <div class="main-content">
-        <a type="button" href="/discussionBoard" class="btn btn-success btn-fill btn-lg" style="margin-bottom: 4px;">
+        <a type="button" href="/discussionBoard" class="btn btn-success btn-fill" style="margin-bottom: 4px;">
           <i class="pe-7s-left-arrow" style="font-size: 1em;"></i>  Back
         </a>
            @if(session()->has('status'))
-  
+
             <script>
              let promise = new Promise(function(resolve, reject){
                 setTimeout(() => resolve('{{ session()->get('status') }}'), 1000);
@@ -59,7 +59,7 @@
                      </div>
 
                     @else
-                     
+
                       <h1 class="text-center">There is no comment for this post.</h1>
 
                     @endif
@@ -89,7 +89,7 @@
                       <button class="btn btn-success btn-fill pull-right">Add Comment</button>
                        <div class="clearfix"></div>
                     </form>
-                    
+
                 </div>
             </div>
         </div>

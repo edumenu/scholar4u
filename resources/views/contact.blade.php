@@ -47,8 +47,8 @@
                 <div class="media contact-info">
                     <span class="contact-info__icon"><i class="ti-home"></i></span>
                     <div class="media-body">
-                        <h3>Buttonwood, California.</h3>
-                        <p>Rosemead, CA 91770</p>
+                        <h3>Morrisville, North Carolina.</h3>
+                        <p>NC 27703</p>
                     </div>
                 </div>
                 <div class="media contact-info">
@@ -61,8 +61,8 @@
                 <div class="media contact-info">
                     <span class="contact-info__icon"><i class="ti-email"></i></span>
                     <div class="media-body">
-                        <h3>support@colorlib.com</h3>
-                        <p>Send us your query anytime!</p>
+                        <h3>shcolar4u@gmail.com</h3>
+                        <p>Send us your email anytime!</p>
                     </div>
                 </div>
             </div>

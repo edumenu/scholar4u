@@ -78,7 +78,8 @@
               @endif
 
               @if(Request::is('login'))
-              <li><a href="{{ route('register') }}">Register</a></li>
+{{--              <li><a href="{{ route('register') }}">Register</a></li>--}}
+              <li><a href="#">Register</a></li>
               @endif
             </ul>
           </div>

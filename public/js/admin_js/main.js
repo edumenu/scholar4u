@@ -86,22 +86,15 @@ $().ready(function() {
 
 /***********  Vetcor map  **************/
 var mapData = {
-       "AU": 760,
-       "BR": 550,
-       "CA": 120,
-       "DE": 1300,
-       "FR": 540,
        "GB": 690,
-       "GE": 200,
-       "IN": 200,
-       "RO": 600,
-       "RU": 300,
        "US": 2920,
+       "AU": 760,
    };
 
    $('#worldMap').vectorMap({
        map: 'world_mill_en',
        backgroundColor: "transparent",
+       markersSelectable: true,
        regionStyle: {
            initial: {
                fill: '#e4e4e4',
@@ -109,7 +102,7 @@ var mapData = {
                stroke: 'none',
                "stroke-width": 0,
                "stroke-opacity": 0
-           }
+           },
        },
 
        series: {
@@ -144,16 +137,131 @@ var mapData = {
 
    /**********   Calendar  ***************/
    $(function() {
+       today = new Date();
+       y = today.getFullYear();
+       m = today.getMonth();
+       d = today.getDate();
 
   // page is now ready, initialize the calendar...
-
   $('#fullCalendar').fullCalendar({
-    header: {
-     left: 'title',
-     center: 'month,agendaWeek,agendaDay',
-     right: 'prevYear,prev,next,nextYear'
-     },
-   });
+      header: {
+          left: 'title',
+          center: 'month,agendaWeek,agendaDay',
+          right: 'prev,next,today'
+      },
+      defaultDate: today,
+      selectable: true,
+      selectHelper: true,
+      // titleFormat: {
+      //     month: 'MMMM YYYY', // September 2015
+      //     week: "MMMM D YYYY", // September 2015
+      //     day: 'D MMM, YYYY'  // Tuesday, Sep 8, 2015
+      // },
+      views: {
+          // week:{ titleFormat: "DD MMMM YYYY" },
+          month: {
+              titleFormat: 'MMMM YYYY'
+          }, // September 2015
+          week: {
+              titleFormat: "MMMM D YYYY"
+          }, // September 2015
+          day: {
+              titleFormat: 'D MMM, YYYY'
+          } // Tuesday, Sep 8, 2015
+      },
+      select: function(start, end) {
+          // Show the Sweet Alert modal with an input
+          swal({
+              title: 'Create an Event',
+              html: '<br><input class="form-control" placeholder="Event Title" id="input-field">',
+              showCancelButton: true,
+              confirmButtonText: 'Yes',
+              confirmButtonClass: "btn btn-info btn-fill",
+              cancelButtonClass: "btn btn-danger btn-fill",
+          }).then(function() {
+              var eventData;
+              event_title = $('#input-field').val();
+
+              if (event_title) {
+                  eventData = {
+                      title: event_title,
+                      start: start,
+                      end: end
+                  };
+                  $('#fullCalendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+              }
+
+              $('#fullCalendar').fullCalendar('unselect');
+
+          }, function(dismiss) {
+              // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+          });
+      },
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+
+
+      // color classes: [ event-blue | event-azure | event-green | event-orange | event-red ]
+      events: [
+          {
+          title: 'All Day Event',
+          start: new Date(y, m, 1)
+          },
+          {
+              id: 999,
+              title: 'Repeating Event',
+              start: new Date(y, m, d - 4, 6, 0),
+              allDay: false,
+              className: 'event-blue'
+          },
+          {
+              id: 999,
+              title: 'Repeating Event',
+              start: new Date(y, m, d + 3, 6, 0),
+              allDay: false,
+              className: 'event-blue'
+          },
+          {
+              title: 'Meeting',
+              start: new Date(y, m, d - 1, 10, 30),
+              allDay: false,
+              className: 'event-green'
+          },
+          {
+              title: 'Lunch',
+              start: new Date(y, m, d + 7, 12, 0),
+              end: new Date(y, m, d + 7, 14, 0),
+              allDay: false,
+              className: 'event-red'
+          },
+          {
+              title: 'LBD Launch',
+              start: new Date(y, m, d - 2, 12, 0),
+              allDay: true,
+              className: 'event-azure'
+          },
+          {
+              title: 'Birthday Party',
+              start: new Date(y, m, d + 1, 19, 0),
+              end: new Date(y, m, d + 1, 22, 30),
+              allDay: false,
+          },
+          {
+              title: 'Click for Creative Tim',
+              start: new Date(y, m, 21),
+              end: new Date(y, m, 22),
+              url: 'http://www.creative-tim.com/',
+              className: 'event-orange'
+          },
+          {
+              title: 'Click for Google',
+              start: new Date(y, m, 23),
+              end: new Date(y, m, 23),
+              url: 'http://www.creative-tim.com/',
+              className: 'event-orange'
+          }
+      ]
+  });
 
   });
 
